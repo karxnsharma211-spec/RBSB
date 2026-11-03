@@ -2,7 +2,7 @@
 (function () {
   "use strict";
   var KEY = "rbsb_site_theme_v1";
-  var DEFAULTS = { primary:"#14243A", accent:"#C5A46D", background:"#FAF8F3", surface:"#FFFFFF", text:"#273444", muted:"#667085", border:"#E7E2D8", siteName:"EVENTWALE" };
+  var DEFAULTS = { primary:"#14243A", accent:"#C5A46D", background:"#FAF8F3", surface:"#FFFFFF", text:"#273444", muted:"#667085", border:"#E7E2D8", siteName:"RBSBEVENT" };
   function validHex(v) { return typeof v === "string" && /^#[0-9a-f]{6}$/i.test(v); }
   function apply(theme) {
     theme = theme && typeof theme === "object" ? theme : {};

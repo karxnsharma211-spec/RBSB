@@ -5,7 +5,7 @@ import { ref, onValue } from "https://www.gstatic.com/firebasejs/12.5.0/firebase
 const defaults = {
   primary: "#14243A", accent: "#C5A46D", background: "#FAF8F3",
   surface: "#FFFFFF", text: "#273444", muted: "#667085", border: "#E7E2D8",
-  siteName: "EVENTWALE"
+  siteName: "RBSBEVENT"
 };
 const validHex = value => /^#[0-9a-f]{6}$/i.test(String(value || ""));
 const CACHE_KEY = "rbsb_site_theme_v1";

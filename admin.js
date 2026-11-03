@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const themeDefaults = {
         primary: "#14243A", accent: "#C5A46D", background: "#FAF8F3",
         surface: "#FFFFFF", text: "#273444", muted: "#667085", border: "#E7E2D8",
-        siteName: "EVENTWALE"
+        siteName: "RBSBEVENTS"
     };
     const themeFields = {
         primary: "sidebarColor", accent: "accentColor", background: "backgroundColor",
@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     const siteNameInput = document.getElementById("siteNameInput");
     if (siteNameInput) siteNameInput.addEventListener("input", () => {
-        selectedTheme.siteName = siteNameInput.value.trim().slice(0, 40) || "EVENTWALE";
+        selectedTheme.siteName = siteNameInput.value.trim().slice(0, 40) || "RBSBEVENTS";
     });
     document.querySelectorAll("[data-theme]").forEach(button => button.addEventListener("click", () => {
         if (presets[button.dataset.theme]) {
@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
     async function saveGlobalTheme(theme) {
         const clean = { ...theme };
         delete clean.preset;
-        clean.siteName = String(clean.siteName || "EVENTWALE").trim().slice(0, 40) || "EVENTWALE";
+        clean.siteName = String(clean.siteName || "RBSBEVENTS").trim().slice(0, 40) || "RBSBEVENTS";
         clean.updatedAt = Date.now();
         await set(ref(db, "siteSettings/theme"), clean);
         try { localStorage.setItem("rbsb_site_theme_v1", JSON.stringify(clean)); } catch (cacheError) { console.warn("Theme cache unavailable:", cacheError); }

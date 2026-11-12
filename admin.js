@@ -43,6 +43,14 @@ document.addEventListener("DOMContentLoaded", function () {
             title: "Booking Management",
             subtitle: "Review and manage customer bookings."
         },
+        complaints: {
+            title: "Review / Complaints",
+            subtitle: "Read and manage customer enquiries."
+        },
+        "customer-reviews": {
+            title: "Customer Reviews",
+            subtitle: "Approve the best customer reviews before publishing them."
+        },
         analytics: {
             title: "Platform Analytics",
             subtitle: "Understand bookings and platform activity."
@@ -204,6 +212,37 @@ document.addEventListener("DOMContentLoaded", function () {
             applyTheme(selectedTheme);
         }
     }));
+    // Prompt-based theme suggestions: local design recipes, no external AI/API.
+    let pendingSuggestedTheme = null;
+    const themePrompt = document.getElementById("themePrompt");
+    const suggestThemeBtn = document.getElementById("suggestThemeBtn");
+    const suggestionPreview = document.getElementById("themeSuggestionPreview");
+    const themeRecipes = [
+        { keys: ["royal", "wedding", "luxury", "regal"], name: "Royal Wedding", description: "Deep plum, champagne and warm ivory for an elegant celebration.", colors: ["#352044", "#D7B77A", "#FBF7F0", "#FFFFFF", "#30283A", "#766B7B", "#E9DFD2"] },
+        { keys: ["pastel", "garden", "floral", "spring"], name: "Pastel Garden", description: "Soft sage, blush and airy cream for a fresh garden feel.", colors: ["#405B50", "#D99DA5", "#FAF7F1", "#FFFFFF", "#303C36", "#78847D", "#E8E2D8"] },
+        { keys: ["black", "gold", "premium", "dark", "night"], name: "Black & Gold Luxe", description: "A dramatic dark palette with refined gold accents.", colors: ["#17191F", "#D4AF65", "#20232B", "#292D37", "#F4F5F7", "#B7BECA", "#414754"] },
+        { keys: ["blue", "ocean", "corporate", "professional"], name: "Ocean Elegance", description: "Confident navy with cool blue and clean white surfaces.", colors: ["#183653", "#64A9C6", "#F3F8FB", "#FFFFFF", "#203344", "#718394", "#DCE6EC"] },
+        { keys: ["purple", "modern", "creative", "lavender"], name: "Modern Lavender", description: "Contemporary violet with soft lilac highlights.", colors: ["#30204D", "#B69AF8", "#F7F3FF", "#FFFFFF", "#30283A", "#756B83", "#E7DFF1"] }
+    ];
+    if (suggestThemeBtn) suggestThemeBtn.addEventListener("click", () => {
+        const prompt = (themePrompt?.value || "").trim().toLowerCase();
+        if (!prompt) { if (themeMessage) themeMessage.textContent = "Describe the theme you want first."; return; }
+        const recipe = themeRecipes.find(item => item.keys.some(key => prompt.includes(key))) || themeRecipes[0];
+        const [primary, accent, background, surface, text, muted, border] = recipe.colors;
+        pendingSuggestedTheme = { ...themeDefaults, primary, accent, background, surface, text, muted, border, preset: "" };
+        document.getElementById("themeSuggestionName").textContent = recipe.name;
+        document.getElementById("themeSuggestionDescription").textContent = recipe.description;
+        document.getElementById("themeSuggestionSwatches").innerHTML = recipe.colors.slice(0, 4).map(color => `<span title="${color}" style="width:42px;height:28px;border-radius:7px;background:${color};border:1px solid #999"></span>`).join("");
+        suggestionPreview.style.display = "block";
+    });
+    const approveSuggestedTheme = document.getElementById("approveSuggestedTheme");
+    if (approveSuggestedTheme) approveSuggestedTheme.addEventListener("click", () => {
+        if (!pendingSuggestedTheme) return;
+        selectedTheme = { ...pendingSuggestedTheme };
+        applyTheme(selectedTheme);
+        if (themeMessage) themeMessage.textContent = "Suggested theme applied as a preview. Click Save Theme to publish it.";
+    });
+
     async function saveGlobalTheme(theme) {
         const clean = { ...theme };
         delete clean.preset;
@@ -394,6 +433,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const totalBookingsEl = document.getElementById("totalBookings");
     const totalPendingEl = document.getElementById("totalPending");
     const pendingBadgeEl = document.getElementById("pendingBadge");
+    const contactEnquiriesBody = document.getElementById("contactEnquiriesTable");
+    const customerReviewsBody = document.getElementById("customerReviewsTable");
+    const customerReviewBadge = document.getElementById("customerReviewBadge");
+    const customerReviewTotal = document.getElementById("customerReviewTotal");
+    const contactEnquiryBadge = document.getElementById("contactEnquiryBadge");
+    const contactEnquiryTotal = document.getElementById("contactEnquiryTotal");
     let bookingsUnsubscribe = null;
 
     function safeText(value) {
@@ -450,6 +495,162 @@ document.addEventListener("DOMContentLoaded", function () {
               <tr><td>${safeText(b.bookingId)}</td><td>${safeText(b.customerName)}</td><td>${safeText(b.eventName)}</td><td>${safeText(statusLabel(b.status))}</td></tr>
             `).join("") : '<tr><td colspan="4" class="empty-cell">No bookings found yet.</td></tr>';
         }
+    }
+
+    function renderContactEnquiries(value) {
+        if (!contactEnquiriesBody) return;
+        const entries = Object.entries(value && typeof value === "object" ? value : {})
+            .map(([id, item]) => ({ id, ...(item || {}) }))
+            .sort((a, b) => Number(b.createdAt || 0) - Number(a.createdAt || 0));
+        const newCount = entries.filter(item => String(item.status || "new").toLowerCase() === "new").length;
+        if (contactEnquiryBadge) contactEnquiryBadge.textContent = String(newCount);
+        if (contactEnquiryTotal) contactEnquiryTotal.textContent = `${entries.length} enquiries`;
+
+        if (!entries.length) {
+            contactEnquiriesBody.innerHTML = '<tr><td colspan="6" class="empty-cell">No customer enquiries received yet.</td></tr>';
+            return;
+        }
+
+        contactEnquiriesBody.innerHTML = entries.map(item => {
+            const status = String(item.status || "new").toLowerCase();
+            const received = item.createdAt ? new Date(Number(item.createdAt)).toLocaleString() : "—";
+            const message = safeText(item.message || "No message supplied.");
+            const subject = safeText(item.subject || item.subjectKey || "General enquiry");
+            const emailStatus = String(item.emailStatus || "pending").toLowerCase();
+            return `
+              <tr>
+                <td><strong>${safeText(item.name || "Unknown")}</strong><br><a href="mailto:${safeText(item.email || "")}">${safeText(item.email || "No email")}</a><div class="contact-enquiry-meta">${safeText(item.phone || "No phone")}</div></td>
+                <td>${subject}</td>
+                <td class="contact-enquiry-message"><details><summary>Read message</summary><div>${message}</div></details></td>
+                <td>${safeText(received)}</td>
+                <td>${emailStatus === "sent" ? "Sent" : emailStatus === "failed" ? '<span class="contact-enquiry-email-failed">Notification failed</span>' : "Pending"}</td>
+                <td>
+                  <span class="contact-enquiry-status ${safeText(status)}">${safeText(status)}</span>
+                  <div class="contact-enquiry-actions">
+                    ${status !== "reviewed" && status !== "resolved" ? `<button type="button" data-enquiry-action="reviewed" data-id="${safeText(item.id)}">Mark reviewed</button>` : ""}
+                    ${status !== "resolved" ? `<button type="button" data-enquiry-action="resolved" data-id="${safeText(item.id)}">Resolve</button>` : ""}
+                  </div>
+                </td>
+              </tr>`;
+        }).join("");
+    }
+
+    if (contactEnquiriesBody) {
+        contactEnquiriesBody.addEventListener("click", async event => {
+            const button = event.target.closest("[data-enquiry-action]");
+            if (!button) return;
+            const id = button.dataset.id;
+            const status = button.dataset.enquiryAction;
+            if (!id || !["reviewed", "resolved"].includes(status)) return;
+            button.disabled = true;
+            try {
+                await update(ref(db, `contactEnquiries/${id}`), {
+                    status,
+                    reviewedAt: Date.now(),
+                    reviewedBy: auth.currentUser?.uid || null,
+                    updatedAt: Date.now()
+                });
+                showToast(status === "resolved" ? "Enquiry marked as resolved." : "Enquiry marked as reviewed.");
+            } catch (error) {
+                console.error("Could not update enquiry status:", error);
+                showToast("Could not update enquiry. Check Firebase database rules.");
+                button.disabled = false;
+            }
+        });
+    }
+
+    // =====================================
+    // CUSTOMER REVIEW MODERATION
+    // =====================================
+    function renderCustomerReviews(value) {
+        if (!customerReviewsBody) return;
+        const entries = Object.entries(value && typeof value === "object" ? value : {})
+            .map(([id, item]) => ({ id, ...(item || {}) }))
+            .sort((a, b) => Number(b.createdAt || 0) - Number(a.createdAt || 0));
+        const pending = entries.filter(item => String(item.status || "pending") === "pending").length;
+        if (customerReviewBadge) customerReviewBadge.textContent = String(pending);
+        if (customerReviewTotal) customerReviewTotal.textContent = `${entries.length} reviews · ${pending} pending`;
+        if (!entries.length) {
+            customerReviewsBody.innerHTML = '<tr><td colspan="6" class="empty-cell">No customer reviews submitted yet.</td></tr>';
+            return;
+        }
+        customerReviewsBody.innerHTML = entries.map(item => {
+            const rating = Math.max(0, Math.min(5, Number(item.rating) || 0));
+            const date = item.createdAt ? new Date(Number(item.createdAt)).toLocaleString() : "—";
+            const status = String(item.status || "pending");
+            const eligible = rating >= 4;
+            return `<tr class="admin-review-row" data-review-row="${safeText(item.id)}" tabindex="0">
+              <td><strong>${safeText(item.name || "Customer")}</strong><div class="contact-enquiry-meta">${safeText(status)}</div></td>
+              <td><span class="admin-review-stars">${"★".repeat(rating)}${"☆".repeat(5-rating)}</span><div class="contact-enquiry-meta">${rating}/5</div></td>
+              <td class="contact-enquiry-message">${safeText(item.review || "")}</td>
+              <td>${safeText(date)}</td>
+              <td><div class="contact-enquiry-actions admin-review-actions" data-review-actions="${safeText(item.id)}">
+                ${status !== "published" ? `<button type="button" data-review-action="publish" data-id="${safeText(item.id)}" ${!eligible ? "disabled title=\"Only 4–5 star reviews can be published\"" : ""}>Show on Website</button>` : '<span class="contact-enquiry-status resolved">Published</span>'}
+                ${status !== "hidden" ? `<button type="button" data-review-action="hide" data-id="${safeText(item.id)}">Keep Hidden</button>` : '<span class="contact-enquiry-status reviewed">Hidden</span>'}
+                <button type="button" data-review-action="delete" data-id="${safeText(item.id)}">Delete</button>
+              </div></td></tr>`;
+        }).join("");
+    }
+
+    if (customerReviewsBody) {
+        const revealReviewActions = row => {
+            if (!row) return;
+            row.classList.add("review-actions-visible");
+            const actions = row.querySelector(".admin-review-actions");
+            if (actions) actions.classList.add("is-visible");
+        };
+        let pressTimer = null;
+        customerReviewsBody.addEventListener("touchstart", event => {
+            const row = event.target.closest("[data-review-row]");
+            if (row) pressTimer = setTimeout(() => revealReviewActions(row), 550);
+        }, { passive: true });
+        ["touchend", "touchmove", "touchcancel"].forEach(type => customerReviewsBody.addEventListener(type, () => {
+            if (pressTimer) clearTimeout(pressTimer);
+            pressTimer = null;
+        }, { passive: true }));
+        customerReviewsBody.addEventListener("dblclick", event => revealReviewActions(event.target.closest("[data-review-row]")));
+        customerReviewsBody.addEventListener("click", async event => {
+            const button = event.target.closest("[data-review-action]");
+            if (!button) return;
+            const id = button.dataset.id;
+            const action = button.dataset.reviewAction;
+            if (!id || !["publish", "hide", "delete"].includes(action)) return;
+            if (action === "delete" && !window.confirm("Permanently delete this customer review?")) return;
+            button.disabled = true;
+            try {
+                const submissionRef = ref(db, `reviewSubmissions/${id}`);
+                const snap = await get(submissionRef);
+                const review = snap.val();
+                if (!review) throw new Error("Review not found.");
+                if (action === "publish") {
+                    if (Number(review.rating) < 4) throw new Error("Only 4–5 star reviews can be published.");
+                    const publicRef = ref(db, "publishedReviews");
+                    const current = await get(publicRef);
+                    const records = Object.entries(current.val() || {}).sort((a,b) => Number(a[1]?.publishedAt || 0) - Number(b[1]?.publishedAt || 0));
+                    const next = {};
+                    // Keep the newest four existing approved reviews, then add this approval.
+                    records.slice(-4).forEach(([key, value]) => { next[key] = value; });
+                    const publishedAt = Date.now();
+                    const publicId = `review_${id}`;
+                    next[publicId] = { name: review.name, review: review.review, rating: Number(review.rating), status: "published", publishedAt };
+                    await set(publicRef, next);
+                    await update(submissionRef, { status: "published", publishedAt, publishedBy: auth.currentUser?.uid || null, publicId });
+                    showToast("Review approved and published. Maximum five reviews are shown.");
+                } else if (action === "hide") {
+                    if (review.publicId) await remove(ref(db, `publishedReviews/${review.publicId}`));
+                    await update(submissionRef, { status: "hidden", moderatedAt: Date.now(), moderatedBy: auth.currentUser?.uid || null });
+                    showToast("Review kept hidden.");
+                } else {
+                    if (review.publicId) await remove(ref(db, `publishedReviews/${review.publicId}`));
+                    await remove(submissionRef);
+                    showToast("Review deleted.");
+                }
+            } catch (error) {
+                console.error("Review moderation failed:", error);
+                showToast(error.message || "Could not update review. Check Firebase rules.");
+                button.disabled = false;
+            }
+        });
     }
 
     // =====================================
@@ -745,6 +946,22 @@ document.addEventListener("DOMContentLoaded", function () {
             }, error => {
                 console.error("Booking read failed:", error);
                 if (bookingBody) bookingBody.innerHTML = '<tr><td colspan="6" class="empty-cell">Could not load bookings. Check Firebase Realtime Database rules.</td></tr>';
+            });
+
+            onValue(ref(db, "reviewSubmissions"), snapshot => {
+                renderCustomerReviews(snapshot.val() || {});
+            }, error => {
+                console.error("Customer review read failed:", error);
+                if (customerReviewsBody) customerReviewsBody.innerHTML = '<tr><td colspan="6" class="empty-cell">Could not load customer reviews. Check Firebase database rules.</td></tr>';
+            });
+
+            onValue(ref(db, "contactEnquiries"), snapshot => {
+                renderContactEnquiries(snapshot.val() || {});
+            }, error => {
+                console.error("Contact enquiries read failed:", error);
+                if (contactEnquiriesBody) {
+                    contactEnquiriesBody.innerHTML = '<tr><td colspan="6" class="empty-cell">Could not load enquiries. Check Firebase database rules.</td></tr>';
+                }
             });
 
             // Keep analytics counts live when an admin adds/edits content too.

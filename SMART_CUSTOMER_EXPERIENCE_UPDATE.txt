@@ -1,0 +1,20 @@
+RBSBEVENTS SMART CUSTOMER EXPERIENCE UPDATE
+
+Included:
+- Smart autocomplete for venue/location and event category fields. Supports partial text and basic typo tolerance using a local suggestion list; no paid API required.
+- International dialing-code dropdowns for telephone fields. The selected calling code is stored with the entered number on form submission.
+- Repeatable scroll reveals: elements animate when they enter view and re-arm when they leave, so scrolling back triggers the animation again.
+- Admin Theme Customizer includes a prompt-based Smart Theme Designer. It uses local curated design recipes (not a remote generative AI service), previews a suggested palette, and requires admin approval before applying. Click Save Theme to publish through the existing Firebase siteSettings/theme path.
+
+No Firebase schema, database rules, Storage, billing plan, or credentials changes are required for these enhancements.
+
+Deployment:
+1. Extract the ZIP.
+2. Upload/replace the website files together, keeping the existing folder structure.
+3. Hard-refresh the browser after deployment.
+4. Test a location search with "ludh" or "ludhiyana", a phone field's country code, repeated scrolling, and Admin > Theme Customizer.
+
+Notes:
+- Autocomplete suggestions are currently local suggestions (Ludhiana, Chandigarh, Amritsar, etc.) and existing venue/event categories. Expand the arrays in smart-enhancements.js to add more choices.
+- Phone number fields submit the selected country code plus the national number. Existing phone data is not migrated.
+- Theme prompt matching selects from bundled palettes; it does not call an AI API or incur API costs.

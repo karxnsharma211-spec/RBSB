@@ -1,0 +1,84 @@
+RBSB EVENTS — PREMIUM MOTION + CONTACT ENQUIRY FIX
+===================================================
+
+CONTACT ENQUIRY PERMISSION_DENIED FIX
+-------------------------------------
+The contact form writes these exact keys to /contactEnquiries:
+  name, email, phone, subject, subjectKey, message,
+  status, emailStatus, createdAt, updatedAt
+(and optional emailSentAt).
+
+The admin dashboard reads the same keys and uses lowercase statuses:
+  new, reviewed, resolved
+
+IMPORTANT:
+The rules shown in the earlier Firebase screenshot required a DIFFERENT
+schema: customerName, customerEmail, customerPhone and capitalized statuses
+such as New / Reviewed / Resolved. That mismatch is why Firebase returned
+PERMISSION_DENIED even though the contactEnquiries section existed.
+
+To fix it:
+1. Firebase Console -> Realtime Database -> Rules.
+2. Back up/copy your currently published rules.
+3. Open FIREBASE_DATABASE_RULES.json from this ZIP.
+4. Publish that complete rules document to the SAME Realtime Database
+   whose URL appears in firebase.js.
+5. Verify that the contactEnquiries rules use name/email/phone and lowercase
+   status values. Do not combine the old customerName schema with this code.
+
+The rules file preserves existing booking/admin/content rules and allows
+unauthenticated visitors to CREATE a new contact enquiry only. Only admins
+listed as true under /admins/{uid} can read enquiries or update their status.
+Public write access is limited to creation at a generated child key. Public
+reads are denied.
+
+EMAILJS
+-------
+Service ID: service_u0tfit1
+Contact template ID configured in email.js: template_jlynijk
+Booking confirmation template ID remains: template_k2aw30i
+Public key remains in email.js.
+
+The Contact Us EmailJS template must send to rbsbevents@gmail.com and use:
+  customer_name, customer_email, customer_phone, subject, message, submitted_at
+Reply-To should be {{customer_email}}.
+
+CONTACT FLOW
+------------
+The page sends the email notification, then saves the enquiry to Firebase.
+If email notification fails but Firebase succeeds, the enquiry is still saved
+and the user sees a success state with a notification warning.
+If Firebase rejects the save, the user sees a specific permission/rules hint.
+The page prevents repeated clicks while submitting.
+
+MOTION UPDATE
+-------------
+motion.css + motion.js provide:
+- staggered scroll reveals with directional movement and blur-to-sharp finish;
+- branded page transition curtain;
+- top scroll progress line;
+- pointer-reactive ambient light and subtle 3D card response on desktop;
+- touch press states and button ripples on mobile;
+- animated form focus and submission states;
+- lazy loading and asynchronous image decoding;
+- reduced-motion accessibility support.
+
+IMAGE PERFORMANCE
+-----------------
+This project does not contain local raster image assets. Existing remote
+Unsplash images remain remote; HTML images are lazy-loaded below the fold and
+decoded asynchronously. Image URLs can only be fully self-hosted and converted
+to local WebP/AVIF files after the original image assets are downloaded and
+added to the project. Do not claim that remote images have been converted
+inside this ZIP.
+
+TEST CHECKLIST
+--------------
+1. Publish FIREBASE_DATABASE_RULES.json to the existing RTDB.
+2. Confirm firebase.js still points to eventwale-9c70f.
+3. Submit a contact enquiry.
+4. Confirm a child appears under /contactEnquiries with name/email/phone keys.
+5. Confirm the admin Review / Complaints tab can read it.
+6. Mark it Reviewed and then Resolved.
+7. Confirm rbsbevents@gmail.com receives the EmailJS notification.
+8. Test booking confirmation, login, signup and admin content updates.

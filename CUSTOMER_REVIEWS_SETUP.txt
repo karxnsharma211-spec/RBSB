@@ -1,0 +1,16 @@
+RBSBEVENTS CUSTOMER REVIEWS — FIREBASE SPARK (FREE) SETUP
+
+- Customers submit their name, 1–5 star rating, and written review.
+- Photo upload is intentionally disabled. This version does not use Firebase Storage.
+- All reviews are stored in Realtime Database at /reviewSubmissions.
+- Reviews remain private until an authorized admin approves them.
+- Only 4–5 star reviews can be published.
+- The public website displays at most five approved reviews.
+- Admins are managed under /admins/{firebase-auth-uid}: true.
+
+Firebase requirements:
+1. Enable the Authentication provider used by your site (Anonymous Authentication if using the anonymous customer submission flow).
+2. Publish the supplied FIREBASE_DATABASE_RULES.json only after reviewing it against your existing database rules and data structure.
+3. No Firebase Storage setup, Storage rules, CORS configuration, or billing-plan upgrade is required for review submissions in this photo-free version.
+
+Existing photoURL/photoPath fields on older review records are ignored by this version. Do not delete existing database data just to remove those fields.

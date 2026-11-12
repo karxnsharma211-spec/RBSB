@@ -1,0 +1,15 @@
+RBSB EVENTS — PREMIUM MOTION UPDATE
+
+motion.css and motion.js are loaded on every HTML page.
+The motion layer adds staggered scroll reveals, directional transitions,
+a branded page curtain, scroll progress, pointer-reactive ambient lighting,
+desktop card perspective, touch press feedback, button ripples, animated
+form states, lazy image loading, and reduced-motion accessibility.
+
+This is an interaction system, not only static CSS transitions: pointer and
+scroll position drive effects, IntersectionObserver triggers reveals, and
+pointer events create touch/click feedback.
+
+No local image files were included in the uploaded project. Remote Unsplash
+images are retained and browser loading is optimized; they have not been
+downloaded or physically converted to local WebP/AVIF files.

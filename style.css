@@ -6977,3 +6977,24 @@ body.service-modal-open { overflow: hidden; }
     max-height: 24vh !important;
   }
 }
+
+
+/* Follow Us social icon alignment */
+.reference-footer .reference-follow a.reference-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.reference-footer .reference-follow .reference-social b {
+  display: inline-flex;
+  flex: 0 0 17px;
+  width: 17px;
+  height: 17px;
+  align-items: center;
+  justify-content: center;
+}
+.reference-footer .reference-follow .reference-social b svg {
+  display: block;
+  width: 17px;
+  height: 17px;
+}

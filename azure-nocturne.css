@@ -1,0 +1,259 @@
+
+/* ==========================================================
+   RBSB EVENTS — AZURE NOCTURNE
+   Unified blue-first design system for customer + admin UI
+   ========================================================== */
+:root{
+ --rbs-blue-950:#07172b;--rbs-blue-900:#0b2140;--rbs-blue-850:#102b50;
+ --rbs-blue-800:#15365f;--rbs-blue-700:#1d4e83;--rbs-blue-600:#2871b5;
+ --rbs-cyan:#55c6df;--rbs-violet:#8c82e8;--rbs-aqua:#8de1df;
+ --rbs-gold:#d8b777;--rbs-ice:#edf5fc;--rbs-surface:#f8fbff;
+ --rbs-text:#172a42;--rbs-muted:#6c8098;--rbs-line:#dce8f3;
+ --rbs-shadow:0 18px 50px rgba(5,24,48,.13);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{
+ background:
+  radial-gradient(ellipse at 8% 8%,rgba(85,198,223,.13),transparent 30%),
+  radial-gradient(ellipse at 92% 22%,rgba(140,130,232,.11),transparent 28%),
+  linear-gradient(145deg,#eaf3fb 0%,#f5f8fd 48%,#eaf2fb 100%)!important;
+ color:var(--rbs-text)!important;
+}
+::selection{background:rgba(85,198,223,.32);color:#07172b}
+a,button{ -webkit-tap-highlight-color:transparent}
+button,input,select,textarea{font:inherit}
+:focus-visible{outline:3px solid rgba(85,198,223,.85)!important;outline-offset:3px}
+/* Deep blue navigation with a cool luminous edge */
+.site-header{
+ position:sticky!important;top:0;z-index:1000!important;
+ background:rgba(7,23,43,.94)!important;color:#eff7ff!important;
+ border:0!important;border-bottom:1px solid rgba(85,198,223,.26)!important;
+ box-shadow:0 12px 35px rgba(4,18,36,.22)!important;backdrop-filter:blur(20px) saturate(150%);
+}
+.site-header .logo,.site-header .logo a,.site-header .main-navigation a,
+.site-header .main-nav a,.site-header .nav-link{color:#eaf5ff!important}
+.site-header .logo span{color:var(--rbs-cyan)!important}
+.site-header .main-navigation a:hover,.site-header .main-nav a:hover,
+.site-header .nav-link:hover,.site-header .nav-link.active{color:#8de1df!important}
+.site-header .main-navigation a:after,.site-header .main-nav a:after,.site-header .nav-link:after{
+ background:linear-gradient(90deg,var(--rbs-cyan),var(--rbs-violet))!important
+}
+/* Hero: layered blue atmosphere, soft 3D orbital shapes */
+.hero-section,.events-hero,.venues-hero,.services-hero,.about-hero,.contact-hero,
+.budget-hero,.booking-hero,.venue-detail-hero{
+ position:relative;isolation:isolate;overflow:hidden;color:#f4f9ff!important;
+ background:
+  radial-gradient(ellipse at 80% 10%,rgba(85,198,223,.30),transparent 30%),
+  radial-gradient(ellipse at 10% 90%,rgba(140,130,232,.24),transparent 35%),
+  linear-gradient(122deg,#07172b 0%,#0b2a50 54%,#174777 100%)!important;
+}
+.hero-section:before,.events-hero:before,.venues-hero:before,.services-hero:before,
+.about-hero:before,.contact-hero:before,.budget-hero:before,.booking-hero:before,
+.venue-detail-hero:before{
+ content:"";position:absolute;z-index:-1;pointer-events:none;width:560px;height:560px;
+ right:-160px;top:-310px;border-radius:50%;
+ border:1px solid rgba(141,225,223,.34);
+ box-shadow:0 0 0 35px rgba(85,198,223,.045),0 0 0 82px rgba(140,130,232,.055),
+ 0 0 0 135px rgba(85,198,223,.035),inset 0 0 70px rgba(85,198,223,.08);
+ transform:rotateX(62deg) rotateZ(-20deg);animation:rbs-orbit 34s linear infinite;
+}
+.hero-section:after,.events-hero:after,.venues-hero:after,.services-hero:after,
+.about-hero:after,.contact-hero:after,.budget-hero:after,.booking-hero:after,
+.venue-detail-hero:after{
+ content:"";position:absolute;z-index:-1;pointer-events:none;width:340px;height:340px;
+ right:12%;bottom:-250px;border-radius:50%;
+ background:radial-gradient(circle,rgba(85,198,223,.25),rgba(85,198,223,0) 68%);
+ filter:blur(4px);animation:rbs-pulse 6s ease-in-out infinite alternate;
+}
+.hero-section h1,.events-hero h1,.venues-hero h1,.services-hero h1,.about-hero h1,
+.contact-hero h1,.budget-hero h1,.booking-hero h1,.venue-detail-hero h1{
+ color:#f5faff!important;text-wrap:balance;letter-spacing:-.05em!important;
+ text-shadow:0 8px 34px rgba(0,0,0,.18)
+}
+.hero-section p,.events-hero p,.venues-hero p,.services-hero p,.about-hero p,
+.contact-hero p,.budget-hero p,.booking-hero p{color:rgba(232,244,255,.78)!important}
+.hero-label,.section-tag,.section-label{color:var(--rbs-cyan)!important}
+/* Page sections */
+section:not(.hero-section):not(.events-hero):not(.venues-hero):not(.services-hero):not(.about-hero):not(.contact-hero):not(.budget-hero):not(.booking-hero){
+ scroll-margin-top:100px
+}
+.section-heading h2,.events-filter-heading h2,.venue-search-heading h2,
+.venue-section-heading h2,.services-section-heading h2,.about-section-heading h2,
+.contact-section-heading h2,.budget-section-heading h2,.booking-section-heading h2{
+ color:#102b4b!important;letter-spacing:-.04em
+}
+.section-heading p,.section-description{color:#71849a!important}
+/* Glass-blue surfaces and 3D card behavior */
+.category-card,.event-card,.venue-card,.service-card,.benefit-item,.venue-benefit-card,
+.about-value-card,.mission-card,.vision-card,.contact-info-card,.budget-expense-card,
+.budget-summary-card,.budget-tip-card,.testimonial-card,.services-process-card,
+.related-venue-card,.planning-step{
+ position:relative;isolation:isolate;overflow:hidden;
+ border:1px solid rgba(126,174,210,.34)!important;border-radius:22px!important;
+ background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(237,246,255,.94))!important;
+ box-shadow:0 12px 32px rgba(13,49,83,.09),inset 0 1px 0 rgba(255,255,255,.9)!important;
+ transition:transform .42s cubic-bezier(.2,.8,.2,1),box-shadow .42s ease,border-color .3s ease!important;
+}
+.category-card:before,.event-card:before,.venue-card:before,.service-card:before,
+.planning-step:before{
+ content:"";position:absolute;z-index:2;inset:0;pointer-events:none;border-radius:inherit;
+ background:linear-gradient(120deg,transparent 25%,rgba(255,255,255,.42) 48%,transparent 65%);
+ transform:translateX(-130%);transition:transform .8s ease;
+}
+.category-card:hover,.event-card:hover,.venue-card:hover,.service-card:hover,
+.venue-benefit-card:hover,.about-value-card:hover,.contact-info-card:hover,
+.budget-expense-card:hover,.budget-tip-card:hover,.planning-step:hover{
+ transform:translateY(-9px) perspective(900px) rotateX(1deg)!important;
+ border-color:rgba(85,198,223,.72)!important;
+ box-shadow:0 26px 58px rgba(8,43,79,.17),0 0 0 1px rgba(85,198,223,.1)!important
+}
+.category-card:hover:before,.event-card:hover:before,.venue-card:hover:before,
+.service-card:hover:before,.planning-step:hover:before{transform:translateX(130%)}
+.category-image,.event-card-image,.venue-image,.service-image{overflow:hidden}
+.category-image img,.event-card-image img,.venue-image img,.service-image img{
+ transition:transform .85s cubic-bezier(.2,.8,.2,1)!important
+}
+.category-card:hover img,.event-card:hover img,.venue-card:hover img,.service-card:hover img{transform:scale(1.065)}
+.event-card-content,.venue-card-content,.service-card-content{padding:24px!important}
+.event-card h3,.venue-card h3,.service-card h3{color:#102b4b!important}
+.event-tag,.venue-type,.venue-type-label,.venue-badge{
+ color:#15547e!important;background:linear-gradient(120deg,#e1f5fb,#e9e8ff)!important;
+ border:1px solid rgba(85,198,223,.25);border-radius:999px!important
+}
+.venue-location,.event-card-meta{color:#71849a!important}
+/* Forms, filter bars and search */
+.events-filter-panel,.venue-search-form,.contact-form-wrapper,.budget-planner-form,
+.booking-form-container,.auth-form-panel,.profile-card{
+ background:linear-gradient(145deg,#fff, #f0f7fd)!important;
+ border:1px solid rgba(126,174,210,.4)!important;border-radius:22px!important;
+ box-shadow:var(--rbs-shadow)!important
+}
+input,select,textarea,.search-field input,.venue-search-field input,.venue-search-field select,
+.contact-field input,.contact-field select,.contact-field textarea,.budget-form-field input,
+.budget-form-field select,.booking-field input,.booking-field select,.booking-field textarea{
+ background:#fbfdff!important;color:#17314f!important;border:1px solid #d4e3f0!important;
+ border-radius:12px!important;transition:border-color .2s,box-shadow .2s!important
+}
+input:focus,select:focus,textarea:focus{
+ outline:none!important;border-color:#48b9d5!important;box-shadow:0 0 0 4px rgba(85,198,223,.16)!important
+}
+.primary-button,.primary-btn,.venue-button,.search-button,.venue-details-btn,
+.contact-submit-btn,.auth-submit-btn{
+ border:1px solid rgba(141,225,223,.35)!important;border-radius:999px!important;
+ color:#f4fbff!important;background:linear-gradient(120deg,#17639a,#257eae 55%,#3976b8)!important;
+ box-shadow:0 10px 25px rgba(22,96,148,.23)!important;font-weight:800!important;
+ transition:transform .25s ease,box-shadow .25s ease,filter .25s ease!important
+}
+.primary-button:hover,.primary-btn:hover,.venue-button:hover,.search-button:hover,
+.venue-details-btn:hover,.contact-submit-btn:hover,.auth-submit-btn:hover{
+ transform:translateY(-3px);box-shadow:0 16px 32px rgba(22,96,148,.32)!important;filter:brightness(1.08)
+}
+.secondary-button,.secondary-btn,.secondary-dark-button{
+ border:1px solid rgba(85,198,223,.55)!important;border-radius:999px!important;
+ background:rgba(255,255,255,.1)!important;color:inherit!important
+}
+/* Venue and event filters/chips */
+.venue-category-links a,.filter-chip,.filter-button,.category-filter{
+ border:1px solid #cbddec!important;border-radius:999px!important;
+ background:#f8fcff!important;color:#34516d!important;transition:all .24s ease!important
+}
+.venue-category-links a:hover,.venue-category-links a.active,.filter-chip.active,
+.filter-button.active,.category-filter.active{
+ background:linear-gradient(120deg,#0c3157,#176da1)!important;color:#effaff!important;
+ border-color:#55c6df!important;box-shadow:0 8px 22px rgba(19,91,139,.18);transform:translateY(-2px)
+}
+/* Auth pages: remove the dated split-panel appearance; add atmospheric 3D orb */
+.auth-page,.login-page,.signup-page{background:linear-gradient(135deg,#eaf3fb,#dceafa 55%,#edf4fc)!important}
+.auth-welcome-panel,.auth-side-panel,.login-welcome,.signup-welcome{
+ position:relative;isolation:isolate;overflow:hidden;
+ background:radial-gradient(circle at 85% 15%,rgba(85,198,223,.3),transparent 28%),
+ linear-gradient(145deg,#07172b,#0e3762 65%,#1b5c8b)!important;color:#f4faff!important
+}
+.auth-welcome-panel:after,.auth-side-panel:after,.login-welcome:after,.signup-welcome:after{
+ content:"";position:absolute;z-index:-1;width:260px;height:260px;right:-80px;bottom:-90px;
+ border-radius:50%;border:1px solid rgba(141,225,223,.45);
+ box-shadow:0 0 0 22px rgba(85,198,223,.06),0 0 0 52px rgba(140,130,232,.07),inset 0 0 50px rgba(85,198,223,.14);
+ transform:rotateX(62deg);animation:rbs-orbit 30s linear infinite
+}
+.auth-welcome-panel h1,.auth-welcome-panel h2,.auth-side-panel h1,.auth-side-panel h2{color:#fff!important}
+.auth-form-panel,.auth-card,.login-card,.signup-card,.form-card{
+ background:rgba(255,255,255,.92)!important;border:1px solid rgba(126,174,210,.45)!important;
+ border-radius:24px!important;box-shadow:0 24px 65px rgba(8,38,69,.15)!important
+}
+/* Footer */
+.site-footer{background:linear-gradient(125deg,#06162a,#0b2a4c 70%,#123e67)!important;color:#e8f5ff!important;border-top:1px solid rgba(85,198,223,.25)}
+.site-footer h3,.site-footer h4,.footer-logo{color:#fff!important}
+.site-footer a{color:#c8dced!important}.site-footer a:hover{color:#8de1df!important}
+/* Admin dashboard: blue glass workspace, matching sidebar, stats, tabs, tables and modals */
+body:has(.admin-layout){background:linear-gradient(135deg,#eaf3fb,#f5f8fd 55%,#e4effa)!important}
+.admin-layout{background:transparent!important}
+.sidebar{
+ background:radial-gradient(circle at 15% 5%,rgba(85,198,223,.18),transparent 28%),
+ linear-gradient(180deg,#07172b,#0b2b50 68%,#10416b)!important;
+ border-right:1px solid rgba(85,198,223,.22)!important;box-shadow:12px 0 38px rgba(5,24,48,.14)
+}
+.brand{border-bottom:1px solid rgba(141,225,223,.18)!important}
+.brand h2{color:#f3f9ff!important}.brand h2 span{color:#65d1e2!important}
+.brand small,.nav-heading{color:#9cb9d2!important}
+.nav-item{color:#c5d8e9!important;border:1px solid transparent!important;border-radius:12px!important;transition:all .22s ease}
+.nav-item:hover{background:rgba(85,198,223,.11)!important;color:#fff!important;transform:translateX(3px)}
+.nav-item.active{background:linear-gradient(100deg,rgba(85,198,223,.2),rgba(140,130,232,.16))!important;
+ color:#fff!important;border-color:rgba(85,198,223,.32)!important;box-shadow:inset 3px 0 #55c6df}
+.nav-badge{background:#267eaa!important;color:#fff!important}
+.main-content{background:transparent!important}
+.topbar{background:rgba(255,255,255,.82)!important;border-bottom:1px solid #d8e6f1!important;backdrop-filter:blur(16px)}
+.page-heading h1,.page-heading h2{color:#102b4b!important}
+.content-area{max-width:1700px}
+.welcome-banner{background:radial-gradient(circle at 90% 0,rgba(85,198,223,.28),transparent 30%),
+ linear-gradient(115deg,#092342,#105080 65%,#277eaa)!important;color:#fff!important;border:1px solid rgba(85,198,223,.24)!important;
+ border-radius:22px!important;box-shadow:0 18px 42px rgba(8,38,69,.18)}
+.welcome-banner h1,.welcome-banner h2,.welcome-banner p{color:#fff!important}
+.stat-card,.panel,.modal-card,.preview-window,.smart-theme-box{
+ background:linear-gradient(145deg,#fff,#f1f7fc)!important;border:1px solid #d8e7f2!important;
+ border-radius:18px!important;box-shadow:0 12px 34px rgba(8,38,69,.08)!important;
+ transition:transform .3s ease,box-shadow .3s ease
+}
+.stat-card:hover,.panel:hover{transform:translateY(-4px);box-shadow:0 20px 42px rgba(8,38,69,.13)!important}
+.stat-icon.blue{background:#e0f3fb!important;color:#1878a8!important}
+.stat-icon.gold{background:#fff2d9!important;color:#a77a2c!important}
+.stat-icon.green{background:#e1f7ee!important;color:#20855d!important}
+.stat-icon.purple{background:#ece9ff!important;color:#665ac2!important}
+.panel-heading,.section-toolbar{border-color:#dce8f3!important}
+table{border-color:#dce8f3!important}
+th{background:#eaf3fa!important;color:#31516e!important}
+td{border-color:#e7eff6!important;color:#38516b!important}
+tr:hover td{background:#f2f8fd!important}
+.admin-footer{color:#7890a8!important}
+.modal-overlay{backdrop-filter:blur(8px);background:rgba(4,20,39,.58)!important}
+.modal-card{background:#fafdff!important}
+.toast{box-shadow:0 12px 35px rgba(4,24,45,.2)!important}
+.logout-btn{background:rgba(255,255,255,.08)!important;border:1px solid rgba(141,225,223,.25)!important;color:#eaf7ff!important}
+.menu-toggle{background:#0b3156!important;color:#fff!important}
+/* Admin login page */
+.login-container{background:radial-gradient(circle at 80% 12%,rgba(85,198,223,.2),transparent 28%),
+ linear-gradient(135deg,#07172b,#0c3157 62%,#174c78)!important}
+.login-container .brand h1{color:#f4faff!important}
+.login-container .brand p{color:#b9d4e8!important}
+.login-card{background:rgba(250,253,255,.96)!important;border:1px solid rgba(141,225,223,.35)!important;
+ border-radius:24px!important;box-shadow:0 25px 70px rgba(0,0,0,.28)!important}
+.admin-icon{background:linear-gradient(135deg,#0c3157,#247eaa)!important;color:#8de1df!important;
+ box-shadow:0 10px 25px rgba(16,101,151,.25)}
+.login-card h2{color:#102b4b!important}
+.login-card button{background:linear-gradient(120deg,#17639a,#287fb1)!important;border-radius:999px!important}
+/* Progress and motion */
+.motion-progress{background:linear-gradient(90deg,#55c6df,#8c82e8,#d8b777)!important}
+@keyframes rbs-orbit{to{transform:rotateX(62deg) rotateZ(340deg)}}
+@keyframes rbs-pulse{from{opacity:.45;transform:scale(.88)}to{opacity:1;transform:scale(1.12)}}
+@media(max-width:850px){
+ .content-area{padding:20px!important}
+}
+@media(max-width:700px){
+ .sidebar{box-shadow:12px 0 38px rgba(5,24,48,.22)}
+ .topbar{background:rgba(255,255,255,.94)!important}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+
+.azure-pointer-depth:before{translate:var(--azure-pointer-x,0) var(--azure-pointer-y,0);transition:translate .18s ease-out}

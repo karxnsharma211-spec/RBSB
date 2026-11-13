@@ -1,0 +1,291 @@
+
+/* ==========================================================
+   RBSB EVENTS — ÉCLAT DESIGN SYSTEM
+   Deep ink • champagne • porcelain • editorial event aesthetic
+   ========================================================== */
+:root{
+ --eclat-ink:#111a2a; --eclat-ink2:#1b2940; --eclat-ink3:#263954;
+ --eclat-gold:#c8a66d; --eclat-gold2:#ead6ad; --eclat-porcelain:#faf8f3;
+ --eclat-paper:#fffefa; --eclat-muted:#737d8c; --eclat-line:#e9e2d6;
+ --eclat-shadow:0 18px 50px rgba(17,26,42,.09);
+}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{background:var(--eclat-porcelain)!important;color:var(--eclat-ink)!important;font-family:Inter,"Segoe UI",Arial,sans-serif}
+a,button,input,select,textarea{-webkit-tap-highlight-color:transparent}
+::selection{background:rgba(200,166,109,.28);color:var(--eclat-ink)}
+/* Header: slim floating capsule, not a heavy black bar */
+.site-header{
+ position:sticky!important;top:0;z-index:1000!important;
+ background:rgba(250,248,243,.88)!important;
+ border:0!important;border-bottom:1px solid rgba(200,166,109,.22)!important;
+ box-shadow:0 8px 30px rgba(17,26,42,.055)!important;
+ backdrop-filter:blur(20px) saturate(150%);
+}
+.header-container{min-height:84px;display:flex;align-items:center;gap:28px}
+.logo,.logo a{font-weight:900!important;letter-spacing:.055em!important;color:var(--eclat-ink)!important;text-decoration:none!important}
+.logo span{color:var(--eclat-gold)!important}
+.main-navigation,.main-nav{display:flex;align-items:center;justify-content:center;gap:clamp(8px,1.35vw,22px)}
+.main-navigation a,.main-nav a,.nav-link{
+ position:relative;color:#354052!important;font-weight:650!important;text-decoration:none!important;
+ padding:10px 3px!important;transition:color .25s ease,transform .25s ease!important;
+}
+.main-navigation a::after,.main-nav a::after,.nav-link::after{
+ content:"";position:absolute;left:0;right:100%;bottom:3px;height:2px;border-radius:3px;
+ background:linear-gradient(90deg,var(--eclat-gold),#e7d2a9);transition:right .28s ease;
+}
+.main-navigation a:hover,.main-nav a:hover,.nav-link:hover,
+.main-navigation a.active,.main-nav a.active,.nav-link.active{color:#a77e43!important}
+.main-navigation a:hover::after,.main-nav a:hover::after,.nav-link:hover::after,
+.main-navigation a.active::after,.main-nav a.active::after,.nav-link.active::after{right:0}
+.header-actions{margin-left:auto}
+/* Hero panels: deep blue-black, champagne orbital lines and soft light */
+.hero-section,.events-hero,.venues-hero,.services-hero,.about-hero,.contact-hero,.budget-hero,.booking-hero,.venue-detail-hero{
+ position:relative;isolation:isolate;overflow:hidden;color:#fff!important;
+ background:
+  radial-gradient(ellipse at 76% 12%,rgba(104,127,164,.30),transparent 32%),
+  radial-gradient(ellipse at 8% 90%,rgba(200,166,109,.16),transparent 30%),
+  linear-gradient(118deg,#0e1727 0%,#17253b 58%,#243650 100%)!important;
+}
+.hero-section::before,.events-hero::before,.venues-hero::before,.services-hero::before,.about-hero::before,.contact-hero::before,.budget-hero::before,.booking-hero::before,.venue-detail-hero::before{
+ content:"";position:absolute;z-index:-1;pointer-events:none;inset:-24%;
+ background:
+  radial-gradient(ellipse at 50% 50%,transparent 48%,rgba(201,166,109,.0) 49%,rgba(201,166,109,.55) 49.2%,transparent 49.6%),
+  radial-gradient(ellipse at 50% 50%,transparent 57%,rgba(222,194,145,.22) 57.15%,transparent 57.5%),
+  radial-gradient(ellipse at 50% 50%,transparent 66%,rgba(201,166,109,.16) 66.12%,transparent 66.4%);
+ transform:rotate(-13deg);animation:eclat-orbit 36s linear infinite;
+}
+.hero-section::after,.events-hero::after,.venues-hero::after,.services-hero::after,.about-hero::after,.contact-hero::after,.budget-hero::after,.booking-hero::after,.venue-detail-hero::after{
+ content:"";position:absolute;z-index:-1;pointer-events:none;width:420px;height:420px;right:-120px;top:-220px;border-radius:50%;
+ background:radial-gradient(circle,rgba(232,203,151,.20),rgba(232,203,151,0) 68%);
+ animation:eclat-breathe 7s ease-in-out infinite alternate;
+}
+.hero-content,.events-hero-content,.venues-hero-content,.services-hero-content,.about-hero-content,.contact-hero-content,.budget-hero-content,.booking-hero-content{
+ position:relative;z-index:1;max-width:1240px!important;margin-inline:auto!important;
+ padding-top:clamp(48px,7vw,96px)!important;padding-bottom:clamp(48px,7vw,96px)!important;
+}
+.hero-section h1,.events-hero h1,.venues-hero h1,.services-hero h1,.about-hero h1,.contact-hero h1,.budget-hero h1,.booking-hero h1,.venue-detail-hero h1{
+ color:#fffdf8!important;font-size:clamp(2.65rem,5.6vw,5.2rem)!important;line-height:1.02!important;
+ letter-spacing:-.055em!important;max-width:900px;text-wrap:balance;
+}
+.hero-section p,.events-hero p,.venues-hero p,.services-hero p,.about-hero p,.contact-hero p,.budget-hero p,.booking-hero p{
+ color:rgba(247,245,239,.78)!important;max-width:680px;line-height:1.75;
+}
+.hero-label,.section-tag,.section-label{color:var(--eclat-gold)!important;letter-spacing:.17em!important;text-transform:uppercase;font-size:.76rem;font-weight:800}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+/* Buttons */
+.primary-button,.primary-btn,.venue-button,.primary-btn.contact-submit-btn,.search-button,.primary-btn.auth-submit-btn{
+ border:1px solid transparent!important;border-radius:999px!important;
+ background:linear-gradient(135deg,#e6d2aa,#c29b60)!important;color:#172033!important;
+ box-shadow:0 9px 24px rgba(157,119,62,.18);
+ font-weight:800!important;transition:transform .25s ease,box-shadow .25s ease,filter .25s ease!important;
+}
+.primary-button:hover,.primary-btn:hover,.venue-button:hover,.search-button:hover{
+ transform:translateY(-3px);box-shadow:0 14px 30px rgba(157,119,62,.28);filter:saturate(1.08)
+}
+.secondary-button,.secondary-btn,.secondary-dark-button{
+ border-radius:999px!important;border:1px solid rgba(200,166,109,.65)!important;
+ background:rgba(255,255,255,.07)!important;color:inherit!important;
+ transition:all .25s ease!important;
+}
+.secondary-button:hover,.secondary-btn:hover,.secondary-dark-button:hover{transform:translateY(-2px);background:rgba(200,166,109,.14)!important}
+/* Editorial sections and headings */
+section:not(.hero-section):not(.events-hero):not(.venues-hero):not(.services-hero):not(.about-hero):not(.contact-hero):not(.budget-hero):not(.booking-hero){
+ scroll-margin-top:100px
+}
+.section-heading h2,.events-filter-heading h2,.venue-search-heading h2,.venue-section-heading h2,
+.services-section-heading h2,.about-section-heading h2,.contact-section-heading h2,.budget-section-heading h2,.booking-section-heading h2{
+ color:var(--eclat-ink)!important;letter-spacing:-.035em;line-height:1.12
+}
+.section-description,.section-heading p{color:var(--eclat-muted)!important;line-height:1.75}
+/* Cards: soft porcelain, fine gold edge, subtle lift */
+.category-card,.event-card,.venue-card,.service-card,.benefit-item,.venue-benefit-card,.about-value-card,.mission-card,.vision-card,.contact-info-card,.budget-expense-card,.budget-summary-card,.budget-tip-card,.testimonial-card,.services-process-card,.related-venue-card,.planning-step{
+ border:1px solid rgba(200,166,109,.23)!important;border-radius:20px!important;background:var(--eclat-paper)!important;
+ box-shadow:0 12px 34px rgba(17,26,42,.055)!important;overflow:hidden;
+ transition:transform .38s cubic-bezier(.2,.8,.2,1),box-shadow .38s ease,border-color .3s ease!important;
+}
+.category-card:hover,.event-card:hover,.venue-card:hover,.service-card:hover,.venue-benefit-card:hover,.about-value-card:hover,.contact-info-card:hover,.budget-expense-card:hover,.budget-tip-card:hover,.planning-step:hover{
+ transform:translateY(-8px);border-color:rgba(200,166,109,.62)!important;box-shadow:0 24px 54px rgba(17,26,42,.12)!important
+}
+.category-image,.event-card-image,.venue-image,.service-image{overflow:hidden}
+.category-image img,.event-card-image img,.venue-image img,.service-image img{
+ transition:transform .8s cubic-bezier(.2,.8,.2,1)!important
+}
+.category-card:hover img,.event-card:hover img,.venue-card:hover img,.service-card:hover img{transform:scale(1.055)}
+.event-card-content,.venue-card-content,.service-card-content{padding:24px!important}
+.event-card h3,.venue-card h3,.service-card h3{color:var(--eclat-ink)!important;letter-spacing:-.02em}
+.event-tag,.venue-type,.venue-type-label,.venue-badge{
+ color:#98713d!important;background:#f4ecdd!important;border-radius:999px!important;
+ letter-spacing:.12em;font-weight:800
+}
+.venue-location,.event-card-meta{color:#758093!important}
+/* Filters and forms */
+.events-filter-panel,.venue-search-form,.contact-form-wrapper,.budget-planner-form,.booking-form-container,.auth-form-panel,.profile-card{
+ background:var(--eclat-paper)!important;border:1px solid rgba(200,166,109,.28)!important;
+ border-radius:22px!important;box-shadow:var(--eclat-shadow)!important
+}
+.events-filter-form,.venue-search-form{gap:18px!important}
+input,select,textarea,.search-field input,.venue-search-field input,.venue-search-field select,.contact-field input,.contact-field select,.contact-field textarea,.budget-form-field input,.budget-form-field select,.booking-field input,.booking-field select,.booking-field textarea{
+ border:1px solid #e4ded3!important;border-radius:12px!important;background:#fffefa!important;color:var(--eclat-ink)!important;
+ transition:border-color .2s ease,box-shadow .2s ease!important
+}
+input:focus,select:focus,textarea:focus{outline:none!important;border-color:var(--eclat-gold)!important;box-shadow:0 0 0 4px rgba(200,166,109,.15)!important}
+/* Venue discovery layout */
+.venue-search-section{background:linear-gradient(180deg,#f3efe7,#faf8f3)!important;padding:clamp(52px,7vw,88px) 0!important}
+.venue-search-heading{width:min(1200px,92%);margin:0 auto 26px!important}
+.venue-search-form{width:min(1200px,92%)!important;margin:0 auto!important;padding:clamp(22px,3vw,34px)!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));align-items:end}
+.venue-search-form button{grid-column:1/-1;justify-self:start;min-width:210px;min-height:50px}
+.venue-collection{background:var(--eclat-porcelain)!important;padding:clamp(54px,7vw,90px) 0!important}
+.venue-section-heading,.venue-category-links{width:min(1200px,92%);margin-inline:auto!important}
+.venue-category-links{display:flex;gap:10px;flex-wrap:wrap;margin:24px auto 32px!important}
+.venue-category-links a{padding:10px 17px!important;border:1px solid #e3d8c6!important;border-radius:999px!important;background:#fffefa!important;color:#465064!important;text-decoration:none!important;font-size:.88rem;font-weight:750;transition:all .25s ease}
+.venue-category-links a:hover,.venue-category-links a.active{background:var(--eclat-ink)!important;color:#f2dfbd!important;border-color:var(--eclat-ink)!important;transform:translateY(-2px)}
+.venues-grid{width:min(1200px,92%);margin:0 auto!important;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px!important;align-items:stretch}
+.venue-card{display:flex;flex-direction:column;height:100%}
+.venue-image{height:235px!important;flex:0 0 235px;background:#e9e3d9}
+.venue-image img{width:100%;height:100%;object-fit:cover;display:block}
+.venue-card-content{display:flex;flex:1;flex-direction:column}
+.venue-card-content>p{line-height:1.65}
+.venue-card-bottom{margin-top:auto!important;padding-top:18px!important;display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--eclat-line)}
+.venue-price{display:flex;flex-direction:column;gap:3px}
+.venue-price strong{font-size:1.18rem;color:var(--eclat-ink)}
+.venue-details-btn{border-radius:999px!important;background:linear-gradient(135deg,#e6d2aa,#c29b60)!important;color:#172033!important;white-space:nowrap}
+.venue-demo-note{width:min(1200px,92%);margin:24px auto 0!important;padding:13px 17px!important;border-left:3px solid var(--eclat-gold);border-radius:0 10px 10px 0;background:#f1ece2;color:#778091!important;font-size:.82rem!important;line-height:1.6}
+.venue-no-results{width:min(1200px,92%);margin:24px auto;padding:22px;border:1px dashed var(--eclat-gold);border-radius:16px;text-align:center}
+/* Events planning area */
+.event-planning-section{background:linear-gradient(180deg,#f3efe7,#faf8f3)!important;padding:clamp(56px,7vw,92px) 0!important}
+.event-planning-section>.container>.section-heading{max-width:850px;margin:0 auto 34px;text-align:center}
+.planning-steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.planning-step{padding:30px!important;min-height:230px}
+.step-number{color:#a47b43!important;font-weight:850;letter-spacing:.12em}
+.planning-cta{margin:34px auto 0!important;padding:30px clamp(22px,4vw,42px)!important;display:flex;justify-content:space-between;align-items:center;gap:22px;border-radius:22px!important;background:linear-gradient(115deg,#121c2d,#263954)!important;color:white!important;box-shadow:0 20px 48px rgba(17,26,42,.16)}
+.planning-cta h3{color:#fff!important;margin:0 0 6px}.planning-cta p{color:#d5dbe4!important;margin:0}
+.planning-cta-actions{display:flex;flex-wrap:wrap;gap:12px}
+.planning-cta-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 20px;border-radius:999px;text-decoration:none;font-weight:800}
+.planning-cta-actions .primary-button{background:linear-gradient(135deg,#e6d2aa,#c29b60);color:#172033}
+.planning-cta-actions .secondary-dark-button{border:1px solid rgba(255,255,255,.35);color:white;background:rgba(255,255,255,.07)}
+/* Footer and utility */
+.site-footer{background:#111a2a!important;color:#e8e5df!important;border-top:1px solid rgba(200,166,109,.28)}
+.site-footer h3,.site-footer h4,.footer-logo{color:#fff!important}
+.site-footer a{color:#d7dce4!important;transition:color .2s ease}
+.site-footer a:hover{color:#e2c28d!important}
+.reference-footer-bottom{border-top:1px solid rgba(255,255,255,.12)!important}
+.auth-page{background:linear-gradient(135deg,#f8f5ee,#e9e3d8)!important}
+.auth-welcome-panel{background:linear-gradient(135deg,#111a2a,#263954)!important;color:#fff}
+.auth-welcome-panel h1,.auth-welcome-panel h2{color:#fff!important}
+.auth-demo-note{border-left:3px solid var(--eclat-gold);background:#f2ece1;border-radius:0 10px 10px 0;padding:12px 15px}
+.motion-progress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:2000;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,#a77e43,#e8d3ad,#fff1cf);pointer-events:none}
+.motion-ambient{position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.22;background-image:radial-gradient(rgba(200,166,109,.24) .7px,transparent .7px);background-size:38px 38px;mask-image:linear-gradient(to bottom,black,transparent 75%)}
+@keyframes eclat-orbit{to{transform:rotate(347deg)}}
+@keyframes eclat-breathe{from{opacity:.45;transform:scale(.88)}to{opacity:1;transform:scale(1.12)}}
+@media(max-width:980px){
+ .header-container{gap:16px}.main-navigation,.main-nav{gap:10px;flex-wrap:wrap}
+ .main-navigation a,.main-nav a{font-size:.9rem}
+ .venues-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+ .header-container{min-height:72px;flex-wrap:wrap;justify-content:space-between;padding-block:10px}
+ .main-navigation,.main-nav{order:3;width:100%;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding:2px 0 8px;scrollbar-width:none}
+ .main-navigation a,.main-nav a{white-space:nowrap;font-size:.85rem}
+ .header-actions{margin-left:auto}
+ .venue-search-form{grid-template-columns:1fr!important}
+ .venue-search-form button{grid-column:auto;width:100%}
+ .venues-grid,.planning-steps-grid{grid-template-columns:1fr}
+ .venue-image{height:220px!important;flex-basis:220px}
+ .planning-cta{align-items:flex-start;flex-direction:column}
+ .planning-cta-actions{width:100%}
+ .planning-cta-actions a{flex:1}
+ .hero-content,.events-hero-content,.venues-hero-content,.services-hero-content,.about-hero-content,.contact-hero-content,.budget-hero-content,.booking-hero-content{padding-top:52px!important;padding-bottom:52px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+
+.eclat-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:var(--eclat-delay,0ms)}
+.eclat-reveal.eclat-in{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.eclat-reveal{opacity:1;transform:none;transition:none}}
+
+
+/* ===== Interactive floating card deck (homepage Explore Events) ===== */
+.category-section{overflow:hidden}
+.category-grid{
+  --deck-card-w:clamp(190px,19vw,244px);
+  position:relative!important;isolation:isolate;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  gap:0!important;width:min(100%,1320px)!important;min-height:470px;
+  margin:24px auto 0!important;padding:48px 20px 62px!important;
+  perspective:1500px;transform-style:preserve-3d;
+}
+.category-card{
+  position:relative!important;display:flex!important;flex:0 0 var(--deck-card-w)!important;
+  flex-direction:column!important;min-width:0;height:360px!important;
+  margin-left:clamp(-52px,-4vw,-24px)!important;overflow:hidden!important;
+  border:1px solid rgba(255,255,255,.12)!important;border-radius:22px!important;
+  background:#111318!important;color:#fff!important;
+  box-shadow:0 24px 55px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.08)!important;
+  text-decoration:none!important;transform-origin:50% 85%;
+  transform:translateY(var(--deck-y,0)) rotate(var(--deck-r,0deg)) rotateY(var(--deck-ry,0deg)) scale(var(--deck-s,1));
+  transition:transform .65s cubic-bezier(.2,.8,.2,1),box-shadow .45s ease,border-color .35s ease!important;
+  will-change:transform;z-index:var(--deck-z,1);
+  animation:deck-float 5.8s ease-in-out infinite;animation-delay:var(--float-delay,0s);
+}
+.category-card:first-child{margin-left:0!important}
+.category-card:nth-child(1){--deck-r:-13deg;--deck-y:25px;--deck-ry:9deg;--deck-z:1;--float-delay:-1.1s}
+.category-card:nth-child(2){--deck-r:-7deg;--deck-y:-2px;--deck-ry:5deg;--deck-z:2;--float-delay:-2.2s}
+.category-card:nth-child(3){--deck-r:0deg;--deck-y:-27px;--deck-ry:0deg;--deck-z:5;--float-delay:-.7s}
+.category-card:nth-child(4){--deck-r:7deg;--deck-y:-2px;--deck-ry:-5deg;--deck-z:2;--float-delay:-3s}
+.category-card:nth-child(5){--deck-r:13deg;--deck-y:25px;--deck-ry:-9deg;--deck-z:1;--float-delay:-1.7s}
+.category-card:nth-child(n+6){--deck-r:17deg;--deck-y:38px;--deck-ry:-10deg;--deck-z:0}
+.category-card .category-image{
+  position:relative!important;display:block!important;width:100%!important;height:56%!important;
+  flex:0 0 56%!important;border-radius:0!important;background-size:cover!important;background-position:center!important;
+  overflow:hidden;
+}
+.category-card .category-image::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(145deg,rgba(255,255,255,.16),transparent 42%,rgba(0,0,0,.15));
+}
+.category-info{
+  position:relative!important;display:flex!important;flex:1;flex-direction:column;justify-content:center;
+  padding:20px 21px 22px!important;background:linear-gradient(155deg,#17191e,#0c0d10)!important;
+  color:#fff!important;text-align:left!important;
+}
+.category-info::before{
+  content:"RBSB EVENTS";display:block;margin-bottom:9px;color:#c8a66d;
+  font-size:.58rem;font-weight:850;letter-spacing:.18em;
+}
+.category-info h3{color:#fff!important;font-size:clamp(1.08rem,1.45vw,1.35rem)!important;line-height:1.14!important;letter-spacing:-.035em;margin:0 0 8px!important}
+.category-info p{color:rgba(255,255,255,.58)!important;font-size:.78rem!important;line-height:1.45!important;margin:0!important}
+.category-card::after{
+  content:"Explore ↗";position:absolute;left:20px;bottom:17px;
+  padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.11);
+  border:1px solid rgba(255,255,255,.09);color:#fff;font-size:.7rem;font-weight:750;
+  opacity:0;transform:translateY(7px);transition:all .3s ease;
+}
+.category-card:hover,.category-card:focus-visible,.category-card.is-focused{
+  --deck-y:-38px!important;--deck-r:0deg!important;--deck-ry:0deg!important;--deck-s:1.075!important;
+  z-index:20!important;border-color:rgba(226,196,143,.72)!important;
+  box-shadow:0 35px 75px rgba(0,0,0,.5),0 0 0 1px rgba(226,196,143,.2)!important;
+  animation-play-state:paused;outline:none;
+}
+.category-card:hover::after,.category-card:focus-visible::after,.category-card.is-focused::after{opacity:1;transform:translateY(0)}
+.category-card:hover .category-image,.category-card.is-focused .category-image{filter:saturate(1.12)}
+.category-card:focus-visible{outline:2px solid #d9bb87;outline-offset:5px}
+@keyframes deck-float{0%,100%{translate:0 0}50%{translate:0 -9px}}
+@media(max-width:900px){
+ .category-grid{justify-content:flex-start!important;overflow-x:auto;overflow-y:visible;min-height:420px;padding:35px 28px 55px!important;scroll-snap-type:x mandatory;scrollbar-width:thin}
+ .category-card{flex-basis:220px!important;height:340px!important;margin-left:-25px!important;scroll-snap-align:center}
+ .category-card:first-child{margin-left:0!important}
+}
+@media(max-width:560px){
+ .category-grid{min-height:390px;padding:28px 22px 50px!important}
+ .category-card{flex-basis:205px!important;height:320px!important;margin-left:-28px!important}
+ .category-card:nth-child(n){--deck-r:0deg;--deck-y:0px;--deck-ry:0deg;--deck-s:.96}
+ .category-card:hover,.category-card:focus-visible{--deck-y:-15px!important;--deck-s:1.02!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .category-card{animation:none!important;transition:none!important}
+}
+
+.category-info::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s ease;background:radial-gradient(circle at var(--pointer-x,50%) var(--pointer-y,50%),rgba(232,210,170,.15),transparent 58%)}
+.category-card:hover .category-info::after,.category-card.is-focused .category-info::after{opacity:1}

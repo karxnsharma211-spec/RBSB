@@ -92,7 +92,7 @@
     mutationObserver.observe(document.body, { childList: true, subtree: true });
 
     if (finePointer) {
-      document.querySelectorAll('.event-card, .venue-card, .service-card, .feature-card, .stat-card, .category-card, .testimonial-card').forEach(card => {
+      document.querySelectorAll('.event-card, .venue-card, .service-card, .feature-card, .stat-card, .testimonial-card').forEach(card => {
         card.classList.add('motion-spotlight');
         card.addEventListener('pointermove', event => {
           const rect = card.getBoundingClientRect();

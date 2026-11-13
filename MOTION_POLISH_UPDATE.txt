@@ -1,0 +1,12 @@
+RBSB EVENTS — MOTION POLISH UPDATE
+
+Added a lightweight visual polish layer to motion.css:
+- Slow ambient glow and floating geometric accent on hero areas
+- Animated underline treatment for primary navigation
+- Smoother logo and card hover feedback
+- Gentle image zoom/saturation on supported cards
+- Clear keyboard focus-visible styling
+- Reduced-motion overrides for all newly added ambient effects
+
+Existing motion.js behavior and all page/application scripts are preserved.
+No dependencies or external libraries were added.

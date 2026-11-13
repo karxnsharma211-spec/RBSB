@@ -1,0 +1,204 @@
+
+/* =========================================================
+   RBSB EVENTS — AUTH + ADMIN LAYOUT REFINEMENT
+   Appended after existing styles to correct the reported UI.
+   ========================================================= */
+
+/* ---------- AUTH: split-screen, compact 3D composition ---------- */
+body.auth-page {
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  margin: 0 !important;
+  overflow-x: hidden !important;
+  background: #f5f8fc !important;
+}
+.auth-page > .site-header,
+.auth-page > .site-footer {
+  display: none !important;
+}
+.auth-page .auth-main {
+  width: 100%;
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: clamp(14px, 2.4vw, 34px) !important;
+  background:
+    radial-gradient(ellipse at 88% 8%, rgba(85,198,223,.12), transparent 28%),
+    linear-gradient(135deg, #eaf2fa 0%, #f8fbff 54%, #e7eff8 100%) !important;
+}
+.auth-page .auth-container {
+  width: min(1320px, 100%) !important;
+  max-width: 1320px !important;
+  height: min(820px, calc(100svh - 48px)) !important;
+  min-height: 0 !important;
+  display: grid !important;
+  grid-template-columns: minmax(300px, .88fr) minmax(420px, 1.12fr) !important;
+  align-items: stretch !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(154,185,211,.55) !important;
+  border-radius: 30px !important;
+  background: #fff !important;
+  box-shadow: 0 30px 90px rgba(7,29,51,.16), 0 4px 16px rgba(7,29,51,.05) !important;
+}
+.auth-page .auth-welcome-panel {
+  min-width: 0 !important;
+  min-height: 100% !important;
+  display: block !important;
+  position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(85,198,223,.25), transparent 26%),
+    radial-gradient(circle at 78% 78%, rgba(140,130,232,.22), transparent 30%),
+    linear-gradient(145deg, #09213d 0%, #0e3d65 58%, #12617e 100%) !important;
+}
+.auth-page .auth-welcome-panel > * { display: none !important; }
+.auth-page .auth-welcome-panel:before {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  z-index: 0 !important;
+  width: clamp(230px, 25vw, 370px) !important;
+  height: clamp(230px, 25vw, 370px) !important;
+  left: 50% !important;
+  top: 48% !important;
+  border-radius: 34% 66% 58% 42% / 42% 38% 62% 58% !important;
+  transform: translate(-50%,-50%) rotateX(58deg) rotateZ(-32deg) !important;
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255,255,255,.85) 0 3%, transparent 4%),
+    linear-gradient(135deg, rgba(255,255,255,.58), rgba(85,198,223,.24) 28%, rgba(140,130,232,.34) 60%, rgba(216,183,119,.62)) !important;
+  border: 1px solid rgba(222,249,255,.72) !important;
+  box-shadow:
+    22px 28px 0 -8px rgba(85,198,223,.22),
+    -24px 34px 0 -12px rgba(216,183,119,.24),
+    0 38px 70px rgba(0,0,0,.3),
+    inset 0 5px 24px rgba(255,255,255,.42),
+    0 0 0 24px rgba(85,198,223,.06),
+    0 0 0 58px rgba(140,130,232,.055) !important;
+  animation: rbsb-auth-object 8s ease-in-out infinite !important;
+}
+.auth-page .auth-welcome-panel:after {
+  content: "RBSB  /  EVENTS" !important;
+  display: block !important;
+  position: absolute !important;
+  left: 34px !important;
+  bottom: 30px !important;
+  right: 34px !important;
+  z-index: 1 !important;
+  color: rgba(240,249,255,.86) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: .28em !important;
+  text-align: left !important;
+}
+.auth-page .auth-form-panel {
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-height: min(900px, calc(100svh - 48px)) !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  padding: clamp(28px, 5vw, 76px) clamp(26px, 6vw, 88px) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: linear-gradient(155deg, #fff 0%, #fbfdff 100%) !important;
+  box-shadow: none !important;
+}
+.auth-page .auth-form-heading {
+  max-width: 560px !important;
+  margin: 0 auto 30px !important;
+  text-align: left !important;
+}
+.auth-page .auth-logo {
+  display: inline-block !important;
+  margin-bottom: 32px !important;
+  color: #102b4b !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  letter-spacing: .08em !important;
+}
+.auth-page .auth-logo span { color: #c49c5e !important; }
+.auth-page .auth-form-heading h2 {
+  margin: 0 0 8px !important;
+  color: #10243d !important;
+  font-size: clamp(30px, 3.1vw, 42px) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -.045em !important;
+}
+.auth-page .auth-form-heading p {
+  color: #74849a !important;
+  font-size: 15px !important;
+}
+.auth-page .auth-form {
+  width: 100% !important;
+  max-width: 560px !important;
+  margin: 0 auto !important;
+}
+.auth-page .auth-field { margin-bottom: 18px !important; }
+.auth-page .auth-field label,
+.auth-page .auth-label-row label {
+  color: #334b66 !important;
+  font-size: 13px !important;
+  font-weight: 750 !important;
+}
+.auth-page .auth-field input,
+.auth-page .auth-field select {
+  width: 100% !important;
+  min-height: 54px !important;
+  padding: 14px 16px !important;
+  border: 1px solid #d9e4ef !important;
+  border-radius: 13px !important;
+  background: #f9fbfe !important;
+  color: #102b4b !important;
+  box-shadow: inset 0 1px 2px rgba(16,43,75,.025) !important;
+}
+.auth-page .auth-field input::placeholder { color: #9aa9b9 !important; }
+.auth-page .auth-field input:focus {
+  border-color: #48b8d3 !important;
+  background: #fff !important;
+  box-shadow: 0 0 0 4px rgba(85,198,223,.14) !important;
+}
+.auth-page .auth-submit-btn,
+.auth-page button.auth-submit-btn {
+  width: 100% !important;
+  min-height: 56px !important;
+  margin-top: 10px !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  background: linear-gradient(110deg, #0c3156, #176c91 72%, #2586a2) !important;
+  color: #fff !important;
+  font-weight: 800 !important;
+  letter-spacing: .02em !important;
+  box-shadow: 0 14px 28px rgba(12,66,103,.2) !important;
+}
+.auth-page .auth-submit-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 18px 34px rgba(12,66,103,.27) !important;
+}
+.auth-page .auth-switch,
+.auth-page .google-login-section,
+.auth-page .admin-login-callout,
+.auth-page .back-home-link {
+  max-width: 560px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.auth-page .auth-switch {
+  margin-top: 22px !important;
+  padding: 15px 16px !important;
+  border: 1px solid #e0e9f1 !important;
+  border-radius: 13px !important;
+  background: #f8fbfe !important;
+  text-align: center !important;
+}
+.auth-page .auth-switch p { color: #71839a !important; }
+.auth-page .auth-switch a,
+.auth-page .forgot-password-link { color: #14769a !important; font-weight: 800 !important; }
+.auth-page .auth-options { margin: 12px 0 20px !important; }
+.auth-page .auth-message { overflow-wrap: anywhere; }
+@keyframes rbsb-auth-object {
+  0%,100% { transform: translate(-50%,-50%) rotateX(58deg) rotateZ(-32deg) translateY(0); }
+  50% { transform: translate(-50%,-53%) rotateX(58deg) rotateZ(-20deg) translateY(-13px); }
+}

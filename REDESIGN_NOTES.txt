@@ -1,0 +1,29 @@
+RBSB EVENTS — FRONTEND STABILITY PATCH
+
+What changed:
+- Added rbsb-polish.css and loaded it after the existing theme stylesheets across the customer-facing pages and admin pages.
+- Forced hero copy to render on a dark, high-contrast background to prevent white text on pale backgrounds.
+- Added missing event-card image backgrounds and consistent image sizing/cropping.
+- Standardized venue image dimensions and replaced the final venue image URL.
+- Reworked login/signup visual layout: removed the large promotional copy panel, added an abstract animated 3D-style decorative visual, widened the form, and updated the login heading.
+- Improved responsive grids, mobile spacing, admin sidebar viewport sizing/scrolling, and horizontally scrollable admin tables.
+- Removed the duplicate Chart.js script include from admin.html.
+
+Important project observation:
+This ZIP is a static HTML/CSS/JavaScript frontend using Firebase modules. It does not contain a Django project, Django apps, Python views, models, migrations, or requirements.txt. No Django backend code was changed. Existing Firebase/auth/booking scripts and page URLs were preserved.
+
+Notes:
+- Images use remote Unsplash URLs and therefore require an internet connection. For production reliability, download approved images and serve them from a local static/assets directory.
+- Validate Firebase credentials/rules and test auth, booking, admin data, and chart behavior in the actual hosted environment before deployment.
+
+
+RESPONSIVE UPDATE
+- Added responsive-final.css (loaded last on every page) and mobile-nav.js (hamburger menu, all public pages).
+- Header collapses to a hamburger at <=1050px; login/signup stack on <=900px; card grids go single-column on phones;
+  form fields use 16px text on phones (no iOS zoom); no horizontal page scroll at 320-1440px.
+- Admin: off-canvas drawer <=900px with backdrop, close button, Esc (admin-mobile.js).
+- 3D (rbsb-3d.js, plain WebGL, no libraries): disco ball on login/signup, balloons+gift (home), cake (events),
+  floral arch (venues), gift box (services), rings (about), coins (budget). Shown only >=1100px (auth: >=900px),
+  pauses off-screen, static if reduced-motion, hides itself if WebGL is unavailable.
+- Login/signup card grows with content on laptops (no inner scrolling); nav stays on one row from 1051px.
+- Admin fix: removed leftover transform on .admin-layout (was breaking position:fixed sidebar); drawer now truly full-height.

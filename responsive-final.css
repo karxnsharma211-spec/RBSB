@@ -1,0 +1,346 @@
+/* =========================================================
+   RBSB EVENTS — RESPONSIVE FINAL LAYER
+   Loaded LAST on every page. Makes the site fit phones,
+   tablets, laptops and large desktops without changing the
+   desktop design. Breakpoints: 1050 / 768 / 600 / 380.
+   ========================================================= */
+
+/* ---------- Foundations ---------- */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html, body { max-width: 100%; overflow-x: clip; }
+img, video, iframe, canvas, svg, embed, object { max-width: 100%; }
+img, video { height: auto; }
+img[class], img[width] { height: revert-layer; }
+table { max-width: 100%; }
+h1, h2, h3, p, a, li, td, th, label, button { overflow-wrap: anywhere; }
+.container { max-width: 100%; }
+
+/* Comfortable tap targets on touch devices */
+@media (pointer: coarse) {
+  button, .btn, [class*="button"], [class*="-btn"], .nav-link,
+  select, input[type="submit"] { min-height: 44px; }
+}
+
+/* ---------- Hamburger button (hidden on desktop) ---------- */
+.site-header .nav-toggle {
+  display: none;
+  width: 46px; height: 46px; padding: 0;
+  align-items: center; justify-content: center;
+  border: 1px solid currentColor; border-radius: 12px;
+  background: transparent; color: inherit; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.site-header .nav-toggle-bars { position: relative; display: block; width: 20px; height: 14px; }
+.site-header .nav-toggle-bars i {
+  position: absolute; left: 0; right: 0; height: 2px; border-radius: 2px;
+  background: currentColor; transition: transform .25s ease, opacity .2s ease, top .25s ease;
+}
+.site-header .nav-toggle-bars i:nth-child(1) { top: 0; }
+.site-header .nav-toggle-bars i:nth-child(2) { top: 6px; }
+.site-header .nav-toggle-bars i:nth-child(3) { top: 12px; }
+.site-header .nav-is-open .nav-toggle-bars i:nth-child(1) { top: 6px; transform: rotate(45deg); }
+.site-header .nav-is-open .nav-toggle-bars i:nth-child(2) { opacity: 0; }
+.site-header .nav-is-open .nav-toggle-bars i:nth-child(3) { top: 6px; transform: rotate(-45deg); }
+
+/* ---------- Tablet & phone header (<= 1050px) ---------- */
+@media (max-width: 1050px) {
+  .site-header > .header-container {
+    width: min(94%, 1440px) !important;
+    min-height: 0 !important;
+    padding: 10px 0 !important;
+    grid-template-columns: minmax(0, 1fr) auto auto !important;
+    grid-template-rows: auto auto !important;
+    justify-content: stretch !important;
+    align-items: center !important;
+    gap: 8px 10px !important;
+  }
+  .site-header .logo { grid-column: 1; grid-row: 1; min-width: 0; font-size: clamp(19px, 5.2vw, 26px) !important; }
+  .site-header .header-actions { grid-column: 2; grid-row: 1; min-width: 0 !important; }
+  .site-header .nav-toggle { display: inline-flex; grid-column: 3; grid-row: 1; }
+
+  /* Collapsible menu: sits inside the header so it inherits the theme colours */
+  .site-header .main-nav,
+  .site-header .main-navigation {
+    grid-column: 1 / -1 !important; grid-row: 2 !important;
+    display: none !important;
+    flex-direction: column !important; align-items: stretch !important; justify-content: flex-start !important;
+    gap: 0 !important; overflow: visible !important;
+    padding: 4px 0 8px !important;
+    border-top: 1px solid rgba(128,128,128,.28);
+    max-height: calc(100svh - 90px); overflow-y: auto !important;
+  }
+  .site-header .nav-is-open .main-nav,
+  .site-header .nav-is-open .main-navigation { display: flex !important; }
+  .site-header .main-nav a,
+  .site-header .main-navigation a,
+  .site-header .nav-link {
+    display: block; width: 100%;
+    padding: 14px 6px !important;
+    font-size: 16px !important;
+    border-bottom: 1px solid rgba(128,128,128,.16);
+    white-space: normal !important;
+  }
+  .site-header .main-nav a:last-child,
+  .site-header .main-navigation a:last-child { border-bottom: 0; }
+
+  .site-header .shared-profile-menu, .site-header .profile-menu { max-width: calc(100vw - 24px); }
+  .site-header .login-button, .site-header .signup-button { padding: 9px 14px !important; font-size: 14px !important; }
+}
+@media (max-width: 420px) {
+  .site-header .login-button { display: none !important; }   /* Sign Up stays; Login is reachable from it */
+  .site-header .signup-button { padding: 8px 12px !important; font-size: 13px !important; }
+}
+
+/* ---------- Tablet (<= 900px) ---------- */
+@media (max-width: 900px) {
+  section, .section { scroll-margin-top: 72px; }
+  .hero-content, .hero-section .container { max-width: 100%; }
+  [class*="-grid"], [class*="grid-"] { min-width: 0; }
+  [class*="-grid"] > *, [class*="grid-"] > * { min-width: 0; }
+}
+
+/* ---------- Phones (<= 600px) ---------- */
+@media (max-width: 600px) {
+  :root { --rbsb-gutter: 16px; }
+  .container { width: calc(100% - 2 * var(--rbsb-gutter)) !important; }
+
+  h1 { font-size: clamp(30px, 9vw, 40px) !important; line-height: 1.12 !important; }
+  h2 { font-size: clamp(24px, 7vw, 32px) !important; line-height: 1.2 !important; }
+
+  /* Multi-column card grids collapse to one column */
+  .venue-grid, .venues-grid, .service-grid, .services-grid, .event-grid, .events-grid,
+  .card-grid, .features-grid, .vision-grid, .budget-tips-grid, .stats-grid, .process-grid,
+  .services-process-grid, .contact-grid, .about-grid, .review-grid, .reviews-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* Hero buttons / CTAs go full width */
+  .hero-buttons, .hero-actions, .cta-buttons, .button-group { flex-direction: column; align-items: stretch !important; }
+  .hero-buttons > *, .hero-actions > *, .cta-buttons > * { width: 100%; text-align: center; }
+
+  /* Forms: 16px stops iOS zoom-on-focus; fields never overflow */
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]),
+  select, textarea { font-size: 16px !important; max-width: 100%; }
+  form { max-width: 100%; }
+
+  /* Wide data scrolls inside itself, not the page */
+  .table-wrap, .table-container, .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Footer */
+  .reference-footer-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; }
+  .reference-footer-bottom { flex-direction: column !important; align-items: flex-start !important; }
+}
+@media (max-width: 380px) {
+  .reference-footer-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  h1 { font-size: 28px !important; }
+}
+
+/* ---------- Login / Sign-up: stack on small screens ---------- */
+@media (max-width: 900px) {
+  body.auth-page .auth-main { place-items: start center !important; padding: 12px !important; min-height: 100svh !important; }
+  body.auth-page .auth-container {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    height: auto !important; max-width: 640px !important;
+    border-radius: 22px !important;
+  }
+  body.auth-page .auth-welcome-panel { min-height: 150px !important; height: 150px !important; }
+  body.auth-page .auth-welcome-panel::before { width: 130px !important; height: 130px !important; top: 50% !important; }
+  body.auth-page .auth-welcome-panel::after { left: 20px !important; bottom: 14px !important; font-size: 10px !important; }
+  body.auth-page .auth-form-panel {
+    max-height: none !important; overflow: visible !important;
+    padding: 28px clamp(18px, 6vw, 40px) 32px !important;
+  }
+}
+@media (max-width: 420px) {
+  body.auth-page .auth-main { padding: 8px !important; }
+  body.auth-page .auth-welcome-panel { min-height: 110px !important; height: 110px !important; }
+  body.auth-page .auth-container { border-radius: 18px !important; }
+}
+
+/* ---------- Large screens: keep line lengths sane ---------- */
+@media (min-width: 1700px) {
+  html { font-size: 17px; }
+}
+
+/* ---------- Short landscape phones ---------- */
+@media (max-height: 480px) and (orientation: landscape) {
+  .site-header { position: relative !important; }
+  .hero-section { min-height: 0 !important; }
+}
+
+/* ---------- Admin: charts never overflow ---------- */
+.admin-layout canvas { max-width: 100% !important; }
+
+/* ---------- Header actions never collide with the logo ---------- */
+.site-header .header-actions { justify-self: end; }
+@media (max-width: 1050px) {
+  .site-header .auth-loading { padding: 0 4px !important; font-size: 0 !important; gap: 0 !important; }  /* spinner only on small screens */
+  .site-header .auth-loading::before { margin: 0; }
+}
+
+/* ---------- Venue details: side gutters on tablet/phone ---------- */
+@media (max-width: 900px) {
+  .venue-breadcrumb,
+  .venue-gallery-heading,
+  .venue-gallery,
+  .venue-gallery-section > p,
+  .venue-gallery-section > small,
+  .venue-overview-section > *,
+  .venue-booking-process > *,
+  .related-venues-section > * {
+    padding-left: max(16px, 4vw);
+    padding-right: max(16px, 4vw);
+    box-sizing: border-box;
+  }
+  .venue-overview-section, .venue-booking-process, .related-venues-section, .venue-detail-cta {
+    max-width: 100%;
+  }
+}
+
+/* =========================================================
+   ADMIN PANEL — mobile / tablet
+   ========================================================= */
+.sidebar-backdrop, .sidebar-close { display: none; }
+
+@media (max-width: 900px) {
+  /* Drawer from 900px down so tablets get it too */
+  .sidebar {
+    /* stretch top-to-bottom instead of trusting vh/dvh (wrong in some in-app browsers) */
+    position: fixed !important; top: 0 !important; bottom: 0 !important; left: 0 !important;
+    height: auto !important; max-height: none !important;
+    width: min(84vw, 300px) !important;
+    transform: translateX(-102%);
+    z-index: 1300 !important;
+    transition: transform .25s ease !important;
+    box-shadow: none;
+  }
+  .sidebar.open { transform: translateX(0); box-shadow: 12px 0 40px rgba(0,0,0,.35); }
+  .main-content { margin-left: 0 !important; width: 100% !important; }
+  .menu-toggle { display: block !important; flex-shrink: 0; min-width: 44px; min-height: 44px; }
+  .topbar { position: sticky; top: 0; z-index: 900; }
+  .topbar-right { display: none; }
+  .content-area { padding: 16px 14px !important; }
+
+  .sidebar-backdrop {
+    display: block; position: fixed; inset: 0; z-index: 1250;
+    background: rgba(8,16,28,.55); opacity: 0; pointer-events: none;
+    transition: opacity .25s ease;
+  }
+  body.sidebar-open .sidebar-backdrop { opacity: 1; pointer-events: auto; }
+  body.sidebar-open { overflow: hidden; }
+
+  .sidebar-close {
+    display: grid; place-items: center; position: absolute; top: 10px; right: 10px; z-index: 2;
+    width: 40px; height: 40px; border: 0; border-radius: 10px;
+    background: rgba(255,255,255,.1); color: #fff; font-size: 18px; cursor: pointer;
+  }
+  .brand { padding-right: 56px !important; }
+  .brand h2 { font-size: 21px !important; letter-spacing: 1px !important; white-space: nowrap; word-break: normal; overflow-wrap: normal; }
+  .brand small { letter-spacing: 2px !important; }
+  .sidebar a, .sidebar button.nav-item, .sidebar .nav-item { min-height: 44px; }
+
+  /* Dashboard grids */
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .charts-grid, .theme-layout, .two-column, .form-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  .chart-card canvas, .chart-container { max-width: 100%; }
+
+  /* Tables scroll inside their card, not the page */
+  .table-wrap, .table-container, .data-table-wrap, .table-responsive,
+  .page-section .card:has(table), .panel:has(table) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { min-width: 560px; }
+  .table-wrap table, .table-container table { min-width: 560px; }
+
+  /* Modals fit the screen */
+  .modal-overlay { padding: 10px !important; }
+  .modal-overlay > *, .modal, .modal-content { max-width: 100% !important; max-height: 92dvh; overflow-y: auto; }
+}
+@media (max-width: 520px) {
+  .stats-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  .page-heading h1 { font-size: 19px !important; }
+  .welcome-banner h2, .welcome-banner h1 { font-size: 22px !important; }
+  .admin-layout input:not([type=checkbox]):not([type=radio]):not([type=color]),
+  .admin-layout select, .admin-layout textarea { font-size: 16px !important; }
+}
+
+/* =========================================================
+   3D SCENES (rbsb-3d.js) — large screens only
+   ========================================================= */
+.rbsb-3d { display: none; pointer-events: none; }
+.rbsb-3d canvas { display: block; width: 100%; height: 100%; }
+
+@media (min-width: 1100px) {
+  .rbsb-3d--hero {
+    display: block; position: absolute; z-index: 1;
+    right: clamp(16px, 4vw, 100px); top: 50%; transform: translateY(-50%);
+    height: min(94%, 600px); aspect-ratio: 1 / 1;
+  }
+}
+
+/* Auth pages: the 3D scene replaces the old glass blob + caption */
+@media (min-width: 900px) {
+  body.auth-page .auth-welcome-panel { overflow: clip !important; }
+  body.auth-page .auth-welcome-panel > .rbsb-3d--panel {
+    display: block !important; position: sticky; top: 24px; z-index: 1;
+    width: 100%; height: min(calc(100svh - 48px), 760px); max-height: 100%;
+  }
+  body.auth-page .auth-welcome-panel.has-3d::before,
+  body.auth-page .auth-welcome-panel.has-3d::after { display: none !important; }
+}
+
+/* ---------- Auth card: grows with its content on laptops/tablets (no inner scrolling) ---------- */
+@media (min-width: 901px) {
+  body.auth-page .auth-main { place-items: center !important; }
+  body.auth-page .auth-container {
+    height: auto !important;
+    min-height: min(760px, calc(100svh - 48px)) !important;
+  }
+  body.auth-page .auth-form-panel { max-height: none !important; overflow: visible !important; }
+  body.auth-page .auth-welcome-panel { min-height: 100% !important; }
+}
+
+/* Keep hero copy clear of the 3D model on big screens */
+@media (min-width: 1100px) {
+  .rbsb-3d--hero { right: clamp(8px, 2.5vw, 70px); height: min(92%, 560px); }
+  .hero-section.has-3d .hero-content { max-width: min(62%, 780px); margin-left: clamp(24px, 6vw, 130px) !important; }
+  .events-hero.has-3d .events-hero-content { width: 54% !important; max-width: 760px; margin: 0 auto 0 clamp(24px, 7vw, 140px) !important; text-align: left !important; }
+  .venues-hero.has-3d .venues-hero-content,
+  .services-hero.has-3d .services-hero-content,
+  .about-hero.has-3d .about-hero-content,
+  .budget-hero.has-3d .budget-hero-content { max-width: min(56%, 760px); }
+}
+@media (min-width: 1100px) {
+  .about-hero.has-3d .about-hero-content,
+  .budget-hero.has-3d .budget-hero-content {
+    max-width: min(54%, 720px) !important; width: auto;
+    margin: 0 auto 0 clamp(24px, 7vw, 140px) !important; text-align: left !important;
+  }
+}
+
+/* Laptop widths: nav stays on one row beside the logo */
+@media (min-width: 1051px) {
+  .site-header > .header-container {
+    grid-template-columns: max-content minmax(0, 1fr) max-content !important;
+    grid-template-rows: auto !important;
+    gap: clamp(12px, 1.6vw, 32px) !important;
+  }
+  .site-header .logo { grid-column: 1 !important; grid-row: 1 !important; }
+  .site-header .main-nav, .site-header .main-navigation {
+    grid-column: 2 !important; grid-row: 1 !important;
+    display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important;
+    justify-content: center !important; overflow: visible !important; padding: 0 !important; border: 0 !important;
+    gap: clamp(10px, 1.3vw, 24px) !important;
+  }
+  .site-header .main-nav a, .site-header .main-navigation a {
+    width: auto !important; border: 0 !important; padding: 10px 0 !important;
+    font-size: clamp(12.5px, 1.05vw, 16px) !important; white-space: nowrap !important;
+  }
+  .site-header .header-actions { grid-column: 3 !important; grid-row: 1 !important; }
+}
+
+/* ADMIN ROOT CAUSE FIX: a leftover animation transform on .admin-layout turned it into the containing
+   block for position:fixed, so the sidebar sized/positioned against the whole page instead of the screen. */
+.admin-layout, .admin-layout.motion-reveal, body > .admin-layout {
+  transform: none !important; filter: none !important; will-change: auto !important;
+  perspective: none !important; contain: none !important; animation: none !important;
+}

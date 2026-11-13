@@ -1,0 +1,800 @@
+
+/* =========================================================
+   RBSB EVENTS — AUTH + ADMIN LAYOUT REFINEMENT
+   Appended after existing styles to correct the reported UI.
+   ========================================================= */
+
+/* ---------- AUTH: split-screen, compact 3D composition ---------- */
+body.auth-page {
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  margin: 0 !important;
+  overflow-x: hidden !important;
+  background: #f5f8fc !important;
+}
+.auth-page > .site-header,
+.auth-page > .site-footer {
+  display: none !important;
+}
+.auth-page .auth-main {
+  width: 100%;
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: clamp(14px, 2.4vw, 34px) !important;
+  background:
+    radial-gradient(ellipse at 88% 8%, rgba(85,198,223,.12), transparent 28%),
+    linear-gradient(135deg, #eaf2fa 0%, #f8fbff 54%, #e7eff8 100%) !important;
+}
+.auth-page .auth-container {
+  width: min(1320px, 100%) !important;
+  max-width: 1320px !important;
+  height: min(820px, calc(100svh - 48px)) !important;
+  min-height: 0 !important;
+  display: grid !important;
+  grid-template-columns: minmax(300px, .88fr) minmax(420px, 1.12fr) !important;
+  align-items: stretch !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(154,185,211,.55) !important;
+  border-radius: 30px !important;
+  background: #fff !important;
+  box-shadow: 0 30px 90px rgba(7,29,51,.16), 0 4px 16px rgba(7,29,51,.05) !important;
+}
+.auth-page .auth-welcome-panel {
+  min-width: 0 !important;
+  min-height: 100% !important;
+  display: block !important;
+  position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(85,198,223,.25), transparent 26%),
+    radial-gradient(circle at 78% 78%, rgba(140,130,232,.22), transparent 30%),
+    linear-gradient(145deg, #09213d 0%, #0e3d65 58%, #12617e 100%) !important;
+}
+.auth-page .auth-welcome-panel > * { display: none !important; }
+.auth-page .auth-welcome-panel:before {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  z-index: 0 !important;
+  width: clamp(230px, 25vw, 370px) !important;
+  height: clamp(230px, 25vw, 370px) !important;
+  left: 50% !important;
+  top: 48% !important;
+  border-radius: 34% 66% 58% 42% / 42% 38% 62% 58% !important;
+  transform: translate(-50%,-50%) rotateX(58deg) rotateZ(-32deg) !important;
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255,255,255,.85) 0 3%, transparent 4%),
+    linear-gradient(135deg, rgba(255,255,255,.58), rgba(85,198,223,.24) 28%, rgba(140,130,232,.34) 60%, rgba(216,183,119,.62)) !important;
+  border: 1px solid rgba(222,249,255,.72) !important;
+  box-shadow:
+    22px 28px 0 -8px rgba(85,198,223,.22),
+    -24px 34px 0 -12px rgba(216,183,119,.24),
+    0 38px 70px rgba(0,0,0,.3),
+    inset 0 5px 24px rgba(255,255,255,.42),
+    0 0 0 24px rgba(85,198,223,.06),
+    0 0 0 58px rgba(140,130,232,.055) !important;
+  animation: rbsb-auth-object 8s ease-in-out infinite !important;
+}
+.auth-page .auth-welcome-panel:after {
+  content: "RBSB  /  EVENTS" !important;
+  display: block !important;
+  position: absolute !important;
+  left: 34px !important;
+  bottom: 30px !important;
+  right: 34px !important;
+  z-index: 1 !important;
+  color: rgba(240,249,255,.86) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: .28em !important;
+  text-align: left !important;
+}
+.auth-page .auth-form-panel {
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-height: min(900px, calc(100svh - 48px)) !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  padding: clamp(28px, 5vw, 76px) clamp(26px, 6vw, 88px) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: linear-gradient(155deg, #fff 0%, #fbfdff 100%) !important;
+  box-shadow: none !important;
+}
+.auth-page .auth-form-heading {
+  max-width: 560px !important;
+  margin: 0 auto 30px !important;
+  text-align: left !important;
+}
+.auth-page .auth-logo {
+  display: inline-block !important;
+  margin-bottom: 32px !important;
+  color: #102b4b !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  letter-spacing: .08em !important;
+}
+.auth-page .auth-logo span { color: #c49c5e !important; }
+.auth-page .auth-form-heading h2 {
+  margin: 0 0 8px !important;
+  color: #10243d !important;
+  font-size: clamp(30px, 3.1vw, 42px) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -.045em !important;
+}
+.auth-page .auth-form-heading p {
+  color: #74849a !important;
+  font-size: 15px !important;
+}
+.auth-page .auth-form {
+  width: 100% !important;
+  max-width: 560px !important;
+  margin: 0 auto !important;
+}
+.auth-page .auth-field { margin-bottom: 18px !important; }
+.auth-page .auth-field label,
+.auth-page .auth-label-row label {
+  color: #334b66 !important;
+  font-size: 13px !important;
+  font-weight: 750 !important;
+}
+.auth-page .auth-field input,
+.auth-page .auth-field select {
+  width: 100% !important;
+  min-height: 54px !important;
+  padding: 14px 16px !important;
+  border: 1px solid #d9e4ef !important;
+  border-radius: 13px !important;
+  background: #f9fbfe !important;
+  color: #102b4b !important;
+  box-shadow: inset 0 1px 2px rgba(16,43,75,.025) !important;
+}
+.auth-page .auth-field input::placeholder { color: #9aa9b9 !important; }
+.auth-page .auth-field input:focus {
+  border-color: #48b8d3 !important;
+  background: #fff !important;
+  box-shadow: 0 0 0 4px rgba(85,198,223,.14) !important;
+}
+.auth-page .auth-submit-btn,
+.auth-page button.auth-submit-btn {
+  width: 100% !important;
+  min-height: 56px !important;
+  margin-top: 10px !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  background: linear-gradient(110deg, #0c3156, #176c91 72%, #2586a2) !important;
+  color: #fff !important;
+  font-weight: 800 !important;
+  letter-spacing: .02em !important;
+  box-shadow: 0 14px 28px rgba(12,66,103,.2) !important;
+}
+.auth-page .auth-submit-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 18px 34px rgba(12,66,103,.27) !important;
+}
+.auth-page .auth-switch,
+.auth-page .google-login-section,
+.auth-page .admin-login-callout,
+.auth-page .back-home-link {
+  max-width: 560px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.auth-page .auth-switch {
+  margin-top: 22px !important;
+  padding: 15px 16px !important;
+  border: 1px solid #e0e9f1 !important;
+  border-radius: 13px !important;
+  background: #f8fbfe !important;
+  text-align: center !important;
+}
+.auth-page .auth-switch p { color: #71839a !important; }
+.auth-page .auth-switch a,
+.auth-page .forgot-password-link { color: #14769a !important; font-weight: 800 !important; }
+.auth-page .auth-options { margin: 12px 0 20px !important; }
+.auth-page .auth-message { overflow-wrap: anywhere; }
+@keyframes rbsb-auth-object {
+  0%,100% { transform: translate(-50%,-50%) rotateX(58deg) rotateZ(-32deg) translateY(0); }
+  50% { transform: translate(-50%,-53%) rotateX(58deg) rotateZ(-20deg) translateY(-13px); }
+}
+
+/* ---------- ADMIN: full-height shell + real scrollable nav ---------- */
+body:has(.admin-layout) {
+  min-height: 100vh !important;
+  overflow-x: hidden !important;
+}
+.admin-layout {
+  display: flex !important;
+  align-items: stretch !important;
+  min-height: 100vh !important;
+  width: 100% !important;
+}
+.admin-layout .sidebar {
+  position: fixed !important;
+  inset: 0 auto 0 0 !important;
+  width: var(--sidebar-width, 258px) !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  max-height: 100dvh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  z-index: 1300 !important;
+}
+.admin-layout .brand,
+.admin-layout .admin-profile,
+.admin-layout .sidebar-bottom {
+  flex: 0 0 auto !important;
+}
+.admin-layout .navigation {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  overscroll-behavior: contain !important;
+  padding: 0 13px 18px !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(141,225,223,.55) rgba(255,255,255,.07) !important;
+}
+.admin-layout .navigation::-webkit-scrollbar { width: 6px; }
+.admin-layout .navigation::-webkit-scrollbar-track { background: rgba(255,255,255,.05); }
+.admin-layout .navigation::-webkit-scrollbar-thumb {
+  background: rgba(141,225,223,.45);
+  border-radius: 20px;
+}
+.admin-layout .sidebar-bottom {
+  margin-top: auto !important;
+  padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
+  background: linear-gradient(180deg, rgba(7,23,43,.1), rgba(7,23,43,.45)) !important;
+}
+.admin-layout .main-content {
+  min-width: 0 !important;
+  width: calc(100% - var(--sidebar-width, 258px)) !important;
+  margin-left: var(--sidebar-width, 258px) !important;
+}
+.admin-layout .topbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 900 !important;
+  min-height: 82px !important;
+  padding: 16px clamp(18px, 3vw, 38px) !important;
+  box-shadow: 0 8px 26px rgba(8,38,69,.06) !important;
+}
+.admin-layout .content-area {
+  width: 100% !important;
+  max-width: 1780px !important;
+  padding: clamp(18px, 2.2vw, 34px) !important;
+  margin: 0 auto !important;
+}
+.admin-layout .welcome-banner {
+  min-height: 150px !important;
+  padding: clamp(22px, 3vw, 38px) !important;
+}
+.admin-layout .stats-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+}
+.admin-layout .stat-card {
+  min-width: 0 !important;
+  padding: 22px !important;
+  border-radius: 20px !important;
+}
+.admin-layout .charts-grid {
+  grid-template-columns: minmax(0, 1.35fr) minmax(300px, .85fr) !important;
+  gap: 20px !important;
+}
+.admin-layout .panel {
+  min-width: 0 !important;
+  border-radius: 20px !important;
+}
+.admin-layout .chart-container { min-width: 0 !important; }
+.admin-layout .table-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+.admin-layout table { min-width: 620px; }
+.admin-layout .nav-item {
+  min-height: 46px !important;
+  font-size: 13px !important;
+}
+.admin-layout .nav-heading { padding-top: 22px !important; }
+
+/* Tablet and mobile */
+@media (max-width: 1100px) {
+  .admin-layout .stats-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  .admin-layout .charts-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 760px) {
+  .admin-layout .sidebar {
+    width: min(300px, 86vw) !important;
+    transform: translateX(-105%) !important;
+    transition: transform .28s ease !important;
+    box-shadow: none !important;
+  }
+  .admin-layout .sidebar.open {
+    transform: translateX(0) !important;
+    box-shadow: 18px 0 50px rgba(3,18,35,.3) !important;
+  }
+  .admin-layout .main-content {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+  .admin-layout .topbar { min-height: 72px !important; }
+  .admin-layout .content-area { padding: 16px 12px !important; }
+  .admin-layout .stats-grid { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+  .admin-layout .welcome-banner { min-height: 130px !important; }
+}
+@media (max-width: 480px) {
+  .admin-layout .stats-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+  .admin-layout .stat-card { padding: 14px 12px !important; }
+  .admin-layout .stat-card h3 { font-size: 24px !important; }
+  .admin-layout .welcome-banner { padding: 18px !important; }
+  .admin-layout .banner-icon { display: none !important; }
+  .admin-layout .panel { padding: 14px 11px !important; }
+  .admin-layout .page-heading h1 { font-size: 18px !important; }
+}
+@media (max-width: 360px) {
+  .admin-layout .stats-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 900px) {
+  .auth-page .auth-container {
+    grid-template-columns: minmax(220px,.62fr) minmax(360px,1fr) !important;
+  }
+  .auth-page .auth-welcome-panel:before {
+    width: 220px !important; height: 220px !important;
+  }
+}
+@media (max-width: 700px) {
+  .auth-page .auth-main { padding: 12px !important; }
+  .auth-page .auth-container {
+    display: block !important;
+    width: min(560px,100%) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    border-radius: 22px !important;
+  }
+  .auth-page .auth-welcome-panel { display: none !important; }
+  .auth-page .auth-form-panel {
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 28px 22px !important;
+  }
+  .auth-page .auth-logo { margin-bottom: 24px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .auth-page .auth-welcome-panel:before { animation: none !important; }
+}
+
+
+/* ==========================================================
+   ADMIN LAYOUT REPAIR v3
+   - Full-height sidebar with one continuous scroll container
+   - No clipped/short sidebar on dashboard pages
+   - Single page title (topbar is the canonical heading)
+   - Full-width, consistent admin tables and responsive content
+   ========================================================== */
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+body:has(.admin-layout) {
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  overflow-x: hidden !important;
+}
+.admin-layout {
+  display: flex !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+}
+
+/* Sidebar: the ASIDE itself is the only scrolling surface.
+   This prevents the nav-only scrollbar + short-looking panel. */
+.admin-layout > .sidebar,
+.admin-layout .sidebar#sidebar {
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: var(--sidebar-width, 258px) !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  max-height: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: none !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(141,225,223,.55) rgba(255,255,255,.06) !important;
+  z-index: 1300 !important;
+}
+.admin-layout .sidebar::-webkit-scrollbar { width: 6px; }
+.admin-layout .sidebar::-webkit-scrollbar-track { background: rgba(255,255,255,.05); }
+.admin-layout .sidebar::-webkit-scrollbar-thumb {
+  background: rgba(141,225,223,.55);
+  border-radius: 20px;
+}
+
+/* Do not nest another scroll region inside the sidebar. */
+.admin-layout .sidebar > .brand,
+.admin-layout .sidebar > .admin-profile,
+.admin-layout .sidebar > .sidebar-bottom {
+  flex: 0 0 auto !important;
+}
+.admin-layout .sidebar > .navigation {
+  display: block !important;
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding-bottom: 14px !important;
+}
+.admin-layout .sidebar .nav-heading {
+  padding-top: 16px !important;
+  padding-bottom: 8px !important;
+}
+.admin-layout .sidebar .nav-item {
+  min-height: 42px !important;
+  margin: 2px 0 !important;
+  padding: 10px 12px !important;
+  line-height: 1.25 !important;
+}
+.admin-layout .sidebar > .sidebar-bottom {
+  position: static !important;
+  margin-top: 0 !important;
+  padding: 14px 15px max(16px, env(safe-area-inset-bottom)) !important;
+  border-top: 1px solid rgba(141,225,223,.18) !important;
+}
+
+/* Main column fills all remaining horizontal and vertical space. */
+.admin-layout > .main-content,
+.admin-layout .main-content {
+  display: flex !important;
+  flex-direction: column !important;
+  width: calc(100% - var(--sidebar-width, 258px)) !important;
+  min-width: 0 !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  margin-left: var(--sidebar-width, 258px) !important;
+}
+.admin-layout .topbar {
+  position: sticky !important;
+  top: 0 !important;
+  flex: 0 0 auto !important;
+  min-height: 82px !important;
+  z-index: 900 !important;
+}
+.admin-layout .content-area {
+  flex: 1 0 auto !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: clamp(20px, 2.4vw, 36px) !important;
+}
+.admin-layout .page-section {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* The topbar already contains the active page title/subtitle.
+   Hide repeated section-toolbar headings while retaining action buttons. */
+.admin-layout .page-section .section-toolbar > div:first-child {
+  display: none !important;
+}
+.admin-layout .page-section .section-toolbar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 16px !important;
+  min-height: 54px !important;
+  margin: 0 0 18px !important;
+}
+
+/* Consistent full-width tables instead of narrow, content-sized tables. */
+.admin-layout .panel,
+.admin-layout .table-wrapper {
+  min-width: 0 !important;
+  width: 100% !important;
+}
+.admin-layout .table-wrapper {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+.admin-layout table {
+  width: 100% !important;
+  min-width: 620px;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+.admin-layout table th {
+  white-space: nowrap !important;
+}
+.admin-layout table td {
+  vertical-align: middle !important;
+}
+.admin-layout table td button,
+.admin-layout table td .action-btn {
+  min-height: 34px !important;
+  padding: 7px 12px !important;
+  border: 1px solid #d7e4ef !important;
+  border-radius: 8px !important;
+  background: #f4f8fc !important;
+  color: #173653 !important;
+  font: inherit !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+.admin-layout table td button:hover,
+.admin-layout table td .action-btn:hover {
+  background: #e7f2fb !important;
+  border-color: #8dc8e8 !important;
+}
+
+/* Dashboard grid must shrink gracefully without overflowing. */
+.admin-layout .stats-grid,
+.admin-layout .charts-grid {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+.admin-layout .stats-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+.admin-layout .charts-grid {
+  grid-template-columns: minmax(0, 1.45fr) minmax(300px, .95fr) !important;
+}
+.admin-layout .chart-panel,
+.admin-layout .chart-container {
+  min-width: 0 !important;
+}
+.admin-layout canvas {
+  max-width: 100% !important;
+}
+
+/* Tablet / phone drawer */
+@media (max-width: 900px) {
+  .admin-layout > .sidebar,
+  .admin-layout .sidebar#sidebar {
+    width: min(300px, 86vw) !important;
+    transform: translateX(-105%) !important;
+    transition: transform .25s ease !important;
+    box-shadow: none !important;
+  }
+  .admin-layout .sidebar.open {
+    transform: translateX(0) !important;
+    box-shadow: 18px 0 50px rgba(3,18,35,.3) !important;
+  }
+  .admin-layout > .main-content,
+  .admin-layout .main-content {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+  .admin-layout .menu-toggle { display: block !important; }
+  .admin-layout .stats-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+  }
+  .admin-layout .charts-grid {
+    grid-template-columns: minmax(0,1fr) !important;
+  }
+}
+@media (max-width: 560px) {
+  .admin-layout .topbar {
+    min-height: 70px !important;
+    padding: 12px 14px !important;
+  }
+  .admin-layout .content-area {
+    padding: 15px 12px !important;
+  }
+  .admin-layout .stats-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    gap: 10px !important;
+  }
+  .admin-layout .stat-card { padding: 14px 11px !important; }
+  .admin-layout .panel { padding: 15px 12px !important; }
+  .admin-layout .page-section .section-toolbar {
+    justify-content: flex-start !important;
+  }
+}
+@media (max-width: 360px) {
+  .admin-layout .stats-grid {
+    grid-template-columns: minmax(0,1fr) !important;
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE ADMIN LAYOUT — desktop, laptop, tablet and phone
+   Kept at the end so it safely overrides earlier theme rules.
+========================================================== */
+.admin-layout,
+.admin-layout .main-content,
+.admin-layout .content-area,
+.admin-layout .page-section {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+.admin-layout {
+  width: 100%;
+  overflow-x: clip;
+}
+
+.admin-layout .main-content {
+  flex: 1 1 auto !important;
+}
+
+.admin-layout .content-area {
+  box-sizing: border-box !important;
+}
+
+.admin-layout .stats-grid,
+.admin-layout .charts-grid,
+.admin-layout .theme-layout,
+.admin-layout .dashboard-grid {
+  min-width: 0 !important;
+}
+
+.admin-layout .stat-card,
+.admin-layout .panel,
+.admin-layout .chart-panel,
+.admin-layout .panel-heading,
+.admin-layout .section-toolbar {
+  min-width: 0 !important;
+  overflow-wrap: anywhere;
+}
+
+.admin-layout .chart-container,
+.admin-layout .doughnut-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+.admin-layout .table-wrapper {
+  display: block !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overscroll-behavior-x: contain;
+}
+
+.admin-layout .table-wrapper table {
+  width: 100% !important;
+}
+
+/* Laptop screens: keep the sidebar, but give the content room to breathe. */
+@media (min-width: 901px) and (max-width: 1280px) {
+  :root { --sidebar-width: 218px; }
+  .admin-layout .sidebar { width: var(--sidebar-width) !important; }
+  .admin-layout .main-content {
+    width: calc(100% - var(--sidebar-width)) !important;
+    margin-left: var(--sidebar-width) !important;
+  }
+  .admin-layout .content-area { padding: 22px 20px !important; }
+  .admin-layout .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+  }
+  .admin-layout .charts-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .admin-layout .topbar { padding-inline: 22px !important; }
+}
+
+/* Desktop / large PC: balanced four-card dashboard and two charts. */
+@media (min-width: 1281px) {
+  .admin-layout .main-content {
+    width: calc(100% - var(--sidebar-width, 258px)) !important;
+    margin-left: var(--sidebar-width, 258px) !important;
+  }
+  .admin-layout .stats-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+  .admin-layout .charts-grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, .9fr) !important;
+  }
+}
+
+/* Tablet and mobile: navigation becomes a slide-in drawer. */
+@media (max-width: 900px) {
+  .admin-layout .sidebar {
+    position: fixed !important;
+    inset: 0 auto 0 0 !important;
+    width: min(300px, 86vw) !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    transform: translateX(-105%) !important;
+    z-index: 1200 !important;
+  }
+  .admin-layout .sidebar.open {
+    transform: translateX(0) !important;
+  }
+  .admin-layout .main-content {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+  .admin-layout .menu-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    min-height: 42px;
+  }
+  .admin-layout .topbar {
+    z-index: 1000 !important;
+    gap: 12px !important;
+  }
+  .admin-layout .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .admin-layout .charts-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .admin-layout .topbar-right { display: none !important; }
+}
+
+@media (max-width: 560px) {
+  .admin-layout .topbar {
+    min-height: 66px !important;
+    padding: 10px 12px !important;
+  }
+  .admin-layout .page-heading h1 {
+    font-size: clamp(17px, 5vw, 20px) !important;
+    line-height: 1.2;
+  }
+  .admin-layout .page-heading p {
+    font-size: 10px !important;
+    line-height: 1.35;
+  }
+  .admin-layout .content-area {
+    padding: 14px 11px !important;
+  }
+  .admin-layout .welcome-banner {
+    min-height: 0 !important;
+    padding: 18px 16px !important;
+  }
+  .admin-layout .welcome-banner h2 {
+    font-size: clamp(17px, 5vw, 21px) !important;
+    line-height: 1.3;
+  }
+  .admin-layout .stats-grid { gap: 10px !important; }
+  .admin-layout .stat-card { padding: 13px 10px !important; }
+  .admin-layout .stat-card h3 { font-size: 23px !important; }
+  .admin-layout .stat-card small { font-size: 10px !important; }
+  .admin-layout .panel { padding: 14px 11px !important; }
+  .admin-layout .panel-heading,
+  .admin-layout .section-toolbar {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+  .admin-layout .section-toolbar button,
+  .admin-layout .section-toolbar .primary-button {
+    max-width: 100%;
+  }
+  .admin-layout .chart-container { height: 220px !important; }
+  .admin-layout .doughnut-container { height: 230px !important; }
+}
+
+@media (max-width: 360px) {
+  .admin-layout .stats-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  .admin-layout .content-area { padding-inline: 9px !important; }
+  .admin-layout .topbar { gap: 8px !important; }
+}

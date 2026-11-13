@@ -1,0 +1,162 @@
+/* RBSB EVENTS — stability, readability and responsive polish */
+:root{--rbs-ink:#14243a;--rbs-navy:#0b1d33;--rbs-blue:#17649a;--rbs-cyan:#55c6df;--rbs-gold:#d1ad70;--rbs-paper:#f6f8fc;--rbs-line:#dce6ef}
+html{scroll-padding-top:90px;overflow-x:clip}
+body{overflow-x:clip;color:#172a42!important}
+img{max-width:100%;height:auto}
+/* Keep hero text on a guaranteed dark canvas; no pale overlay can wash it out. */
+.hero-section,.events-hero,.venues-hero,.services-hero,.about-hero,.contact-hero,.budget-hero,.booking-hero,.venue-detail-hero{
+ background-color:#0b1d33!important;color:#f7fbff!important;isolation:isolate
+}
+.hero-section{background-image:linear-gradient(90deg,rgba(7,23,43,.92),rgba(7,23,43,.68) 58%,rgba(7,23,43,.25)),url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=85")!important;background-position:center!important;background-size:cover!important}
+.hero-overlay{background:transparent!important;position:relative;z-index:1}
+.hero-content,.hero-content h1,.hero-content p,.hero-label,.events-hero-content,.venues-hero-content,.services-hero-content,.about-hero-content,.contact-hero-content,.budget-hero-content,.booking-hero-content{position:relative;z-index:2}
+.hero-content h1,.events-hero h1,.venues-hero h1,.services-hero h1,.about-hero h1,.contact-hero h1,.budget-hero h1,.booking-hero h1,.venue-detail-hero h1{color:#fff!important}
+.hero-description,.hero-content p,.events-hero p,.venues-hero p,.services-hero p,.about-hero p,.contact-hero p,.budget-hero p,.booking-hero p{color:#e1eaf4!important}
+.hero-label,.section-label,.section-tag{color:#e1bd7e!important}
+/* Event image anchors had no image rules in the source stylesheet. */
+.event-card-image{display:block!important;position:relative;min-height:260px;height:260px;width:100%;background-position:center!important;background-size:cover!important;background-repeat:no-repeat!important;overflow:hidden;border-radius:18px 18px 0 0}
+.wedding-event-image{background-image:linear-gradient(0deg,rgba(8,24,43,.08),transparent),url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1100&q=85')!important}
+.birthday-event-image{background-image:linear-gradient(0deg,rgba(8,24,43,.08),transparent),url('https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1100&q=85')!important}
+.engagement-event-image{background-image:url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1100&q=85')!important}
+.college-event-image{background-image:url('https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1100&q=85')!important}
+.corporate-event-image{background-image:url('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1100&q=85')!important}
+.anniversary-event-image{background-image:url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1100&q=85')!important}
+.event-card-image:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(85,198,223,.08),transparent 55%,rgba(209,173,112,.14));pointer-events:none}
+/* Venue media: preserve a consistent crop and prevent broken-image overflow. */
+/* FIX: the old `background:#dce6ef!important` shorthand wiped every venue photo set
+   via background-image (home page cards). Only the colour is set here now. */
+.venue-image{height:250px!important;min-height:210px;overflow:hidden;background-color:#dce6ef!important;background-size:cover;background-position:center;background-repeat:no-repeat}
+.venue-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.venue-card,.event-card,.service-card{min-width:0}
+.venue-card-content,.event-card-content,.service-card-content{min-width:0}
+.venue-card-bottom{gap:14px;flex-wrap:wrap}
+/* Consistent card sizing and clear typography across content sections. */
+.event-card h3,.venue-card h3,.service-card h3{color:#14243a!important}
+.event-card p,.venue-card p,.service-card p,.benefit-item p{color:#61748c!important}
+.event-card-button,.venue-card button,.venue-card .primary-button{max-width:100%;white-space:normal}
+/* Auth: compact modern single-purpose card with an abstract 3D decorative panel. */
+.auth-main{min-height:calc(100svh - 90px)!important;padding:clamp(24px,5vw,64px) 4%!important;background:radial-gradient(circle at 10% 20%,rgba(85,198,223,.12),transparent 28%),linear-gradient(145deg,#edf4fb,#f8fafc 60%,#e7eff8)!important}
+.auth-container{max-width:980px!important;min-height:0!important;grid-template-columns:.48fr 1fr!important;border:1px solid #d7e4ef!important;border-radius:28px!important;box-shadow:0 28px 80px rgba(7,29,51,.15)!important}
+.auth-welcome-panel{min-height:620px;position:relative;display:block!important;padding:0!important;background:radial-gradient(circle at 50% 48%,rgba(85,198,223,.26),transparent 28%),radial-gradient(circle at 70% 25%,rgba(140,130,232,.25),transparent 32%),linear-gradient(150deg,#07172b,#0e3a62 65%,#14547a)!important}
+.auth-welcome-panel>*{display:none!important}
+.auth-welcome-panel:before{content:"";position:absolute!important;width:min(23vw,250px);height:min(23vw,250px);min-width:150px;min-height:150px;left:50%;top:50%;transform:translate(-50%,-50%) rotateX(62deg) rotateZ(-24deg);border-radius:36%;border:1px solid rgba(141,225,223,.65);background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.35),transparent 22%),linear-gradient(145deg,rgba(85,198,223,.2),rgba(140,130,232,.13));box-shadow:0 25px 70px rgba(0,0,0,.24),inset 0 0 45px rgba(85,198,223,.22),0 0 0 24px rgba(85,198,223,.06),0 0 0 54px rgba(140,130,232,.05);animation:rbs-auth-float 7s ease-in-out infinite}
+.auth-welcome-panel:after{content:"RBSB  ✦  EVENTS";position:absolute;left:0;right:0;bottom:42px;text-align:center;color:rgba(239,248,255,.85);font-size:12px;font-weight:800;letter-spacing:.24em}
+.auth-form-panel{padding:clamp(28px,5vw,58px)!important;background:rgba(255,255,255,.97)!important}
+.auth-form-heading h2{color:#14243a!important;font-size:clamp(28px,3vw,38px)!important}
+.auth-form-heading p{color:#71849a!important}
+.auth-logo{color:#14243a!important}
+.auth-logo span{color:#bd9659!important}
+.auth-field input,.auth-field select{min-height:52px;border-radius:13px!important;border:1px solid #d8e3ee!important;background:#fbfdff!important;color:#14243a!important}
+.auth-field input:focus{border-color:#55c6df!important;box-shadow:0 0 0 4px rgba(85,198,223,.13)!important}
+.auth-submit-btn,.primary-btn.auth-submit-btn{background:linear-gradient(110deg,#d9bd87,#bd9659)!important;color:#14243a!important;border-radius:999px!important;min-height:54px;box-shadow:0 12px 28px rgba(189,150,89,.22)}
+/* Admin: fixed viewport sidebar with its own scroll; content never sits underneath it. */
+.admin-layout{min-height:100svh!important;display:flex;align-items:stretch}
+.sidebar{height:100vh!important;height:100dvh!important;max-height:100dvh;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(141,225,223,.45) rgba(255,255,255,.06)}
+.navigation{flex:1 0 auto!important;padding-bottom:18px}
+.main-content{min-width:0!important;width:calc(100% - var(--sidebar-width))}
+.content-area{width:100%;min-width:0;max-width:1700px}
+.content-area table{display:block;max-width:100%;overflow-x:auto;white-space:nowrap}
+.charts-grid,.stats-grid,.dashboard-grid{min-width:0}
+.topbar{min-width:0}
+@keyframes rbs-auth-float{0%,100%{transform:translate(-50%,-50%) rotateX(62deg) rotateZ(-24deg) translateY(0)}50%{transform:translate(-50%,-54%) rotateX(62deg) rotateZ(-12deg) translateY(-12px)}}
+@media(max-width:950px){.auth-container{grid-template-columns:.32fr 1fr!important}.auth-welcome-panel{min-height:560px}}
+@media(max-width:760px){
+ .main-content{width:100%!important;margin-left:0!important}
+ .sidebar{z-index:1200!important}
+ .content-area{padding:18px 14px!important}
+ .auth-main{padding:22px 14px!important}
+ .auth-container{display:block!important;max-width:560px!important}
+ .auth-welcome-panel{display:none!important}
+ .auth-form-panel{padding:30px 22px!important}
+ .event-card-image{height:220px;min-height:220px}
+ .venue-image{height:220px!important}
+ .venues-grid,.events-grid,.services-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:560px){
+ .venues-grid,.events-grid,.services-grid,.category-grid,.venue-grid{grid-template-columns:1fr!important}
+ .event-card-image{height:230px;min-height:230px}
+ .venue-image{height:230px!important}
+ .hero-content h1{font-size:clamp(2.3rem,11vw,3.3rem)!important}
+ .hero-actions{align-items:stretch}
+ .hero-actions a{width:100%;text-align:center}
+ .content-area{padding:14px 10px!important}
+ .stats-grid{grid-template-columns:1fr!important}
+ .topbar{padding:12px!important}
+}
+@media(prefers-reduced-motion:reduce){.auth-welcome-panel:before{animation:none!important}}
+
+/* =====================================================================
+   FIXES (Nov 2026)
+   ===================================================================== */
+
+/* 1) "Great Events Begin With Great Planning" — text was white on the light
+      cream section that lumiere-redesign.css paints over the old navy one.
+      Dark text on the light section, and benefit cards laid out as a row. */
+.why-choose-section .why-choose-content h2{color:#14243a!important}
+.why-choose-section .why-choose-content>p:not(.section-label){color:#4d6078!important}
+.why-choose-section .benefits-list{gap:16px}
+.why-choose-section .benefit-item{
+ flex-direction:row!important;align-items:center;gap:16px;height:auto!important;
+ padding:18px 22px!important;background:#fff!important;
+}
+.why-choose-section .benefit-item>div{min-width:0}
+.why-choose-section .benefit-item h3{color:#14243a!important;font-size:1.02rem;margin:0 0 3px}
+.why-choose-section .benefit-item p{color:#5b6e85!important;font-size:.9rem;margin:0}
+.why-choose-section .benefit-icon{width:36px;height:36px;border-radius:50%!important;flex:0 0 36px}
+.why-choose-section .image-caption h3{color:#fff!important}
+.why-choose-section .image-caption p{color:#f0d29b!important}
+
+/* 2) Homepage "Explore Events" floating card deck.
+      a) The "Explore ↗" pill shared its ::after with .motion-spotlight (inset:0),
+         so on hover it stretched into a huge black rounded shape over the card.
+      b) azure-nocturne's generic card hover replaced the deck transform, so the
+         hovered card jumped out of position. Both are restored here. */
+.category-grid .category-card::after{
+ content:"Explore ↗";position:absolute!important;inset:auto auto 17px 22px!important;
+ width:auto!important;height:auto!important;max-width:calc(100% - 44px);
+ padding:8px 14px;border-radius:999px;z-index:3;pointer-events:none;
+ background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);
+ color:#fff;font-size:.73rem;font-weight:750;line-height:1.2;letter-spacing:.02em;
+ opacity:0;transform:translateY(7px);transition:opacity .3s ease,transform .3s ease;
+}
+.category-grid .category-card:hover::after,
+.category-grid .category-card:focus-visible::after,
+.category-grid .category-card.is-focused::after{opacity:1;transform:none}
+.category-grid .category-card:hover,
+.category-grid .category-card:focus-visible,
+.category-grid .category-card.is-focused{
+ transform:translate(-50%,-50%) rotate(0deg) translateX(var(--deck-x,0px)) translateY(var(--deck-y,0px)) scale(var(--deck-scale,1))!important;
+}
+@media(max-width:900px){
+ .category-grid .category-card:hover,
+ .category-grid .category-card:focus-visible,
+ .category-grid .category-card.is-focused{transform:translateY(-10px) scale(1.025)!important}
+}
+
+/* 3) Homepage featured-venue photos. eclat-theme.css sets `background:#e9e3d9` on
+      .venue-image, which resets background-image and hid the photos — re-declare them. */
+.venue-image.royal-venue-image{background-image:linear-gradient(0deg,rgba(8,24,43,.10),transparent 45%),url("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=900&q=75")!important}
+.venue-image.garden-venue-image{background-image:linear-gradient(0deg,rgba(8,24,43,.10),transparent 45%),url("https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?auto=format&fit=crop&w=900&q=75")!important}
+.venue-image.party-venue-image{background-image:linear-gradient(0deg,rgba(8,24,43,.10),transparent 45%),url("https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=75")!important}
+
+/* 4) Small gold section labels / tags were pale gold on cream (contrast ~1.6).
+      Use a deeper gold on light sections, keep the light gold on dark ones. */
+.section-label,.section-tag{color:#8a6430!important}
+[class*="hero"] .section-label,[class*="hero"] .section-tag,
+[class*="-cta"] .section-label,[class*="-cta"] .section-tag,
+.final-cta-section .section-label,.final-cta-section .section-tag,
+.auth-welcome-panel .section-tag,
+.about-cta .section-tag,.about-project-content .section-tag,
+.why-choose-image .section-label{color:#e1bd7e!important}
+
+/* 5) Homepage "Your Dream Event, Within Your Budget" banner sits on gold, so it
+      needs dark text rather than the pale gold / grey-blue it inherited. */
+.budget-cta-section .section-label{color:#4a3513!important}
+.budget-cta-section .budget-cta-content>p:not(.section-label){color:#3b2f1a!important}
+
+/* 6) Empty rating stars were nearly invisible (#d4d7dc on cream). */
+.rating-picker label{color:#a9b4c2}
+.rating-picker label:hover,.rating-picker label:hover~label,.rating-picker input:checked~label{color:#c49a45}
+
+/* Decorative gold glyph icons: slightly deeper gold for legibility on beige tiles. */
+.service-icon,.benefit-icon,.about-card-icon,.contact-info-icon,.budget-expense-icon{color:#8a6430!important}
